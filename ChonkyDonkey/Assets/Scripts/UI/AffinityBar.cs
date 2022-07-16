@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class AffinityBar : MonoBehaviour
 {
+    private GameObject takeOneHomeCanvas;
+    private GameObject takeAllHomeCanvas;
     private Image heartBar;
     private float maxAffinity = 50;
     public float dog1Affinity;
@@ -14,49 +16,48 @@ public class AffinityBar : MonoBehaviour
     private int currentDogTag;
 
     private float rollResult; //need to adapt Anthony's dice roller to work here
-    public float rollModifiers; //need to grab this from drunk meter
+
+    [Header("Drink modifiers")]
+    private Drunkeness drunkScript;
+    //public float rollModifiers; //need to grab this from drunk meter
 
     private void Start()
     {
+        takeOneHomeCanvas = GameObject.FindWithTag("TakeOneHomeCanvas");
+        takeAllHomeCanvas = GameObject.FindWithTag("TakeAllHomeCanvas");
         heartBar = this.gameObject.GetComponent<Image>();
         dog1Affinity = 20;
         dog2Affinity = 10;
         dog3Affinity = 5;
+        drunkScript = FindObjectOfType<Drunkeness>();
 
+        if (takeOneHomeCanvas.activeInHierarchy || takeAllHomeCanvas.activeInHierarchy)
+        {
+            takeOneHomeCanvas.SetActive(false);
+            takeAllHomeCanvas.SetActive(false);
+        }
         if (this.gameObject.activeInHierarchy)
         {
-            this.gameObject.SetActive(false);
-        }
-    }
-
-    public void ToggleUiOn()
-    {
-        if (this.gameObject.activeInHierarchy)
-        {
-            this.gameObject.SetActive(false);
-        }
-        else
-        {
-            this.gameObject.SetActive(true);
+           // this.gameObject.SetActive(false);
         }
     }
 
     public void OnTestRoll()
     {
         RollAffinity();
-        Debug.Log("test rolling");
     }
 
     // temp roller
     private void RollAffinity()
     {
-        rollResult = Random.Range(1, 7) + rollModifiers;
+        rollResult = Random.Range(1, 7) + drunkScript.GetRollModifier();
         UpdateAffinityAfterRoll(currentDogTag);
     }
     
-    // call this from the dialogue manager when starting a conversation with a dog
+    // call this from the interactable GO when starting a conversation with a dog
     public void ShowThisDogsAffinity(int dogTag)
     {
+        //ToggleUiOn();
         switch (dogTag)
         {
             case 1:
@@ -78,6 +79,19 @@ public class AffinityBar : MonoBehaviour
 
         heartBar.fillAmount = currentDogAffinity / maxAffinity;
     }
+
+   /* private void ToggleUiOn()
+    {
+        if (this.gameObject.activeInHierarchy)
+        {
+            this.gameObject.SetActive(false);
+            CheckAffinity();
+        }
+        else
+        {
+            this.gameObject.SetActive(true);
+        }
+    }*/
 
     // call this when updating the affinity bar after a dice roll
     public void UpdateAffinityAfterRoll(int dogTag)
@@ -153,11 +167,23 @@ public class AffinityBar : MonoBehaviour
     {
         if (dog1Affinity >= 50 && dog2Affinity >= 50 && dog3Affinity >= 50)
         {
-            Debug.Log("maxed out all dogs");
+            takeAllHomeCanvas.SetActive(true);
         }
         else if (dog1Affinity >=50 || dog2Affinity >=50 || dog3Affinity >= 50)
         {
-            Debug.Log("maxed out one dog");
+            takeOneHomeCanvas.SetActive(true);
         }
+    }
+
+    public void TakeHome()
+    {
+        Debug.Log("Took dog home. Game over");
+    }
+
+    public void KeepSocializing()
+    {
+        Debug.Log("Didn't take dog home. Continuing game.");
+        takeOneHomeCanvas.SetActive(false);
+        takeAllHomeCanvas.SetActive(false);
     }
 }
