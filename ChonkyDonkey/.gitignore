@@ -9,6 +9,7 @@
 /[Bb]uilds/
 /[Ll]ogs/
 /[Mm]emoryCaptures/
+/[Aa]ssets/[Mm]irror/[Ee]xamples/
 
 # Asset meta data should only be ignored when the corresponding asset is also ignored
 !/[Aa]ssets/**/*.meta
@@ -58,3 +59,11 @@ sysinfo.txt
 # Crashlytics generated file
 crashlytics-build.properties
 
+
+UserSettings/Layouts/
+Assets/Mirror/Examples.meta
+UserSettings/EditorUserSettings.asset
+UserSettings/EditorUserSettings.asset
+UserSettings/EditorUserSettings.asset
+
+UserSettings/
