@@ -1,13 +1,29 @@
 
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 
 public static class StatsLoader
 {
-    public static DogStatsBlock[] Stats { get; private set; } 
+    public static DogStatsBlock[] Stats { get; private set; }
+
+    public static DogStatsBlock Get(int dogId)
+    {
+        // no stats
+        if (Stats == null || Stats.Length == 0)
+        {
+            Debug.LogError($"Stats requested, but failed to initialize");
+            return default;
+        }
+
+        // return stats
+        if (Stats.TryGet(dogId, out DogStatsBlock stats)) return stats;
+        
+        // not found - fail quietly
+        Debug.LogError($"Dog with id {dogId} not found");
+        return Stats[0];
+
+    }
     
     [RuntimeInitializeOnLoadMethod]
     public static void LoadStats()
@@ -80,4 +96,38 @@ public struct DogStatsBlock
     {
         return $"[{ID}]{DisplayName} Greetings:{Greetings.Length} Good:{GoodAnswer.Length} Bad:{BadAnswer.Length}";
     }
+
+    public string GetLine(DogReactionType reactionType, int affinity)
+    {
+        int index = DogHelper.GetAffinityIndex(affinity);
+        string[] category;
+        switch (reactionType)
+        {
+            case DogReactionType.Greeting:
+                category = Greetings;
+                break;
+            case DogReactionType.Happy:
+                category = GoodAnswer;
+                break;
+            case DogReactionType.Angry:
+                category = BadAnswer;
+                break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(reactionType), reactionType, null);
+        }
+        return category.TryGet(index, out string s) ? s : category[0];
+        
+    }
+}
+
+public static class DogConstants
+{
+    // ReSharper disable IdentifierTypo
+    public const int
+        Kaiba = 1,
+        Kiefy = 2,
+        Leafeon = 3,
+        Umbreon = 4,
+        Haku = 5;
+    // ReSharper restore IdentifierTypo
 }

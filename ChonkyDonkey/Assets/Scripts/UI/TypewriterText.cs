@@ -24,14 +24,14 @@ public class TypewriterText : MonoBehaviour
     private float textAppearingAnimationProgress = 0;
     private int prevTextAppearingAnimationCharacter;
 
-    public void PlayTypewriter(string text, float speed, AudioClip[] sounds, float delay = 0f)
+    public void PlayTypewriter(string text, float lettersPerSecond, AudioClip[] sounds = null, float delay = 0f, int startingProgress = 0)
     {
         if (text == null) return;
 
         string prev = inputData.FullText ?? "";
 
         // params
-        inputData = new InputData { FullText = text, TypewriterSounds = sounds ?? new AudioClip[0], TypewriterSpeed = speed };
+        inputData = new InputData { FullText = text, TypewriterSounds = sounds ?? new AudioClip[] { soundSource.clip }, TypewriterSpeed = lettersPerSecond };
 
         // appending?
         if (text.StartsWith(prev, System.StringComparison.Ordinal))
@@ -42,7 +42,7 @@ public class TypewriterText : MonoBehaviour
         // resetting
         else
         {
-            VisualReset();
+            VisualReset(startingProgress);
         }
         textAppearingAnimationProgress -= (inputData.TypewriterSpeed * delay); 
     }
@@ -53,10 +53,10 @@ public class TypewriterText : MonoBehaviour
         VisualReset();
     }
 
-    private void VisualReset()
+    private void VisualReset(int resetPoint=0)
     {
         // reset ui
-        textAppearingAnimationProgress = 0;
+        textAppearingAnimationProgress = resetPoint;
         SetText(""); // dialogueLabel.text handled by Update()
     }
 
