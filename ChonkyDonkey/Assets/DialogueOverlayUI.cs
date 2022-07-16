@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class DialogueOverlayUI : MonoBehaviour
 {
+    public Animator Controller;
+    public TypewriterText Typewriter;
+
     // Start is called before the first frame update
     void Start()
     {
