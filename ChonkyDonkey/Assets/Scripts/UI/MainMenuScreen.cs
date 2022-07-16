@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MainMenuScreen : MonoBehaviour
 {
@@ -8,9 +9,10 @@ public class MainMenuScreen : MonoBehaviour
     public OptionsScreen optionsScreen;
     public CreditsScreen creditsScreen;
 
-    public void OnPlayClicked() 
+    public void OnPlayClicked()
     {
-        // TODO load the gameplay screen
+        SceneManager.LoadScene("GameScene", LoadSceneMode.Single);
+        
     }
 
     public void OnOptionsClicked() 
