@@ -11,6 +11,7 @@ public class AffinityBar : MonoBehaviour
     public float dog2Affinity;
     public float dog3Affinity;
     private float currentDogAffinity = 10;
+    private int currentDogTag;
 
     private float rollResult; //need to adapt Anthony's dice roller to work here
     public float rollModifiers; //need to grab this from drunk meter
@@ -21,24 +22,65 @@ public class AffinityBar : MonoBehaviour
         dog1Affinity = 20;
         dog2Affinity = 10;
         dog3Affinity = 5;
-        UpdateAffinityBar(1);
+
+        if (this.gameObject.activeInHierarchy)
+        {
+            this.gameObject.SetActive(false);
+        }
+    }
+
+    public void ToggleUiOn()
+    {
+        if (this.gameObject.activeInHierarchy)
+        {
+            this.gameObject.SetActive(false);
+        }
+        else
+        {
+            this.gameObject.SetActive(true);
+        }
     }
 
     public void OnTestRoll()
     {
-        RollAffinity(1);
+        RollAffinity();
         Debug.Log("test rolling");
     }
 
     // temp roller
-    private void RollAffinity(int dogTag)
+    private void RollAffinity()
     {
         rollResult = Random.Range(1, 7) + rollModifiers;
-        UpdateAffinityBar(dogTag);
+        UpdateAffinityAfterRoll(currentDogTag);
+    }
+    
+    // call this from the dialogue manager when starting a conversation with a dog
+    public void ShowThisDogsAffinity(int dogTag)
+    {
+        switch (dogTag)
+        {
+            case 1:
+                currentDogAffinity = dog1Affinity;
+                currentDogTag = 1;
+                break;
+            case 2:
+                currentDogAffinity = dog2Affinity;
+                currentDogTag = 2;
+                break;
+            case 3:
+                currentDogAffinity = dog3Affinity;
+                currentDogTag = 3;
+                break;
+            default:
+                Debug.Log("Not a datable dog");
+                break;
+        }
+
+        heartBar.fillAmount = currentDogAffinity / maxAffinity;
     }
 
-    // Call this from the dialogue manager when a dog's affinity is being updated
-    public void UpdateAffinityBar(int dogTag)
+    // call this when updating the affinity bar after a dice roll
+    public void UpdateAffinityAfterRoll(int dogTag)
     {
         // tell dialogue manager which line to output
         if (rollResult < 1)
@@ -106,6 +148,7 @@ public class AffinityBar : MonoBehaviour
         CheckAffinity();
     }
 
+    // Check if the player can take the dog home
     private void CheckAffinity()
     {
         if (dog1Affinity >= 50 && dog2Affinity >= 50 && dog3Affinity >= 50)
