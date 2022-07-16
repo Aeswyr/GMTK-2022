@@ -40,6 +40,11 @@ public class Drunkeness : MonoBehaviour
         return rollModifiers[currentIndex] * rollScale;
     }
 
+    public float GetDrunkenessPercentage()
+    {
+        return currentIndex / maxIndex;
+    }
+
     private int[] CreateDrunkenessArray()
     {
         int[] arr = new int[maxIndex + 1];
