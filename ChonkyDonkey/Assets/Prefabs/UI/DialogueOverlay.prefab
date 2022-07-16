@@ -337,6 +337,7 @@ GameObject:
   - component: {fileID: 1120313080}
   - component: {fileID: 1120313082}
   - component: {fileID: 1120313081}
+  - component: {fileID: 348590707354489716}
   m_Layer: 5
   m_Name: NextArrow
   m_TagString: Untagged
@@ -361,9 +362,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -71, y: 76.493}
-  m_SizeDelta: {x: 73.33331, y: 70}
-  m_Pivot: {x: 1, y: 0}
+  m_AnchoredPosition: {x: -109, y: 95.74306}
+  m_SizeDelta: {x: 135.8857, y: 64.1873}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1120313082
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -392,7 +393,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 55b4ba128cfb14d7792e80504427448f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 11258417e967e5d42ae190eb07468a43, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -402,6 +403,22 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!111 &348590707354489716
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1120313079}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 8d40d25eb037f4d44859f7fbdc7a3d75, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: 8d40d25eb037f4d44859f7fbdc7a3d75, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &1368464635
 GameObject:
   m_ObjectHideFlags: 0
@@ -679,7 +696,26 @@ MonoBehaviour:
   Controller: {fileID: 5013276838199390451}
   NameLabel: {fileID: 6988101042759862639}
   Typewriter: {fileID: 519131107}
-  CharacterSprites: []
+  NextArrow: {fileID: 1120313079}
+  CharacterSprites:
+  - Default: {fileID: 21300000, guid: 0d07bf73ce1d34cc2b44d3d6ab0fd939, type: 3}
+    Happy: {fileID: 21300000, guid: c3fb3fe0a36aa4e0c96952bb9999370e, type: 3}
+    Angry: {fileID: 21300000, guid: b58905efa182c478598505aed339c6cc, type: 3}
+  - Default: {fileID: 21300000, guid: 0d07bf73ce1d34cc2b44d3d6ab0fd939, type: 3}
+    Happy: {fileID: 21300000, guid: c3fb3fe0a36aa4e0c96952bb9999370e, type: 3}
+    Angry: {fileID: 21300000, guid: b58905efa182c478598505aed339c6cc, type: 3}
+  - Default: {fileID: 21300000, guid: 0d07bf73ce1d34cc2b44d3d6ab0fd939, type: 3}
+    Happy: {fileID: 21300000, guid: c3fb3fe0a36aa4e0c96952bb9999370e, type: 3}
+    Angry: {fileID: 21300000, guid: b58905efa182c478598505aed339c6cc, type: 3}
+  - Default: {fileID: 21300000, guid: 0d07bf73ce1d34cc2b44d3d6ab0fd939, type: 3}
+    Happy: {fileID: 21300000, guid: c3fb3fe0a36aa4e0c96952bb9999370e, type: 3}
+    Angry: {fileID: 21300000, guid: b58905efa182c478598505aed339c6cc, type: 3}
+  - Default: {fileID: 21300000, guid: 0d07bf73ce1d34cc2b44d3d6ab0fd939, type: 3}
+    Happy: {fileID: 21300000, guid: c3fb3fe0a36aa4e0c96952bb9999370e, type: 3}
+    Angry: {fileID: 21300000, guid: b58905efa182c478598505aed339c6cc, type: 3}
+  - Default: {fileID: 21300000, guid: 0d07bf73ce1d34cc2b44d3d6ab0fd939, type: 3}
+    Happy: {fileID: 21300000, guid: c3fb3fe0a36aa4e0c96952bb9999370e, type: 3}
+    Angry: {fileID: 21300000, guid: b58905efa182c478598505aed339c6cc, type: 3}
 --- !u!95 &5013276838199390451
 Animator:
   serializedVersion: 4

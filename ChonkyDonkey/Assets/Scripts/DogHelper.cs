@@ -23,3 +23,10 @@ public enum DogReactionType
     Happy,
     Angry
 }
+
+public enum PlayerActionType
+{
+    Awoo,
+    Invite,
+    Leave
+}

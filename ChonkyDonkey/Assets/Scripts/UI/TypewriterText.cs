@@ -135,7 +135,7 @@ public class TypewriterText : MonoBehaviour
         }
     }
 
-    public float GetProgress()
+    public float GetProgressPercent()
     {
         if (string.IsNullOrEmpty(inputData.FullText)) return 0;
         return textAppearingAnimationProgress / inputData.FullText.Length;

@@ -7,13 +7,22 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private Rigidbody2D rbody;
     [SerializeField] private SpriteRenderer sprite;
+    [SerializeField] private Animator animator;
     [SerializeField] private InteractController interaction;
     [SerializeField] private float speed;
 
+    public bool IsFrozen;
+
     void FixedUpdate()
     {
+        if (IsFrozen) return;
+
+        
+        
         // Movement
         float dir = InputHandler.Instance.dir;
+
+        bool moving = dir != 0;
 
         Vector2 velocity = rbody.velocity;
         velocity.x = speed * dir;
@@ -30,5 +39,8 @@ public class PlayerController : MonoBehaviour
             if (interactions.Count > 0)
                 interactions[0].Run();
         }
+
+        // Update animator
+        animator.SetBool("moving", moving);
     }
 }
