@@ -71,3 +71,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3bcc2129b927b447b503481745973e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  action:
+    m_PersistentCalls:
+      m_Calls: []
+  outline: {fileID: 2100000, guid: 103d4d890b261144aa67aad2b64566c9, type: 2}
