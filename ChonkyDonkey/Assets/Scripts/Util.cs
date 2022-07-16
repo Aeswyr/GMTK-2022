@@ -46,6 +46,13 @@ public static class Util
             }
         }
     }
+
+    public static void SetActiveFast(this GameObject gameObject, bool active)
+    {
+        if (gameObject.activeSelf == active) return;
+        gameObject.SetActive(active);
+    }
+    
     #endregion
 
     private static Canvas CachedCanvas;

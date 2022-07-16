@@ -1,16 +1,22 @@
 using TMPro;
+using UnityEditor.ShaderGraph.Serialization;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class DialogueOverlayUI : MonoBehaviour
 {
+    [Header("Links")]
     public Image CharacterIcon;
     public Animator Controller;
     public TextMeshProUGUI NameLabel;
     public TypewriterText Typewriter;
-
-    public CharacterDialogueSpriteCollection[] CharacterSprites;
+    public GameObject NextArrow;
     
+    [Header("Assets")]
+    public CharacterDialogueSpriteCollection[] CharacterSprites;
+
+    private PlayerController cachedPlayer;
+
     // animator triggers
     private static readonly int IsShowing = Animator.StringToHash("IsShowing");
     private static readonly int CharacterChanged = Animator.StringToHash("CharacterChanged");
@@ -32,6 +38,10 @@ public class DialogueOverlayUI : MonoBehaviour
 
     private void OnTalk(int dogId, int affinity, DogReactionType reactionType)
     {
+        // ReSharper disable once Unity.NoNullCoalescing
+        cachedPlayer = cachedPlayer ?? FindObjectOfType<PlayerController>();
+        cachedPlayer.IsFrozen = true;
+
         // load the dialogue text
         var dog = StatsLoader.Get(dogId);
 
@@ -47,6 +57,50 @@ public class DialogueOverlayUI : MonoBehaviour
         NameLabel.text = dog.DisplayName;
 
         // start the typewriter
-        Typewriter.PlayTypewriter(dog.GetLine(reactionType, affinity), 10);
+        Typewriter.PlayTypewriter(dog.GetLine(reactionType, affinity), 10, delay: 1f);
+    }
+
+    private void Update()
+    {
+        bool typewriterDone = Typewriter.GetProgressPercent() >= 1;
+        
+        // handle interaction
+        if (Controller.GetBool(IsShowing))
+        {
+            if (InputHandler.Instance.menu.pressed)
+            {
+                Debug.Log("esc press");
+                OnChoice(PlayerActionType.Leave);
+                return;
+            }
+
+            if (InputHandler.Instance.interact.pressed)
+            {
+                if (!typewriterDone) Typewriter.Finish();
+                typewriterDone = true;
+            }
+        }
+
+        if (NextArrow.activeSelf != typewriterDone)
+        {
+            NextArrow.SetActiveFast(typewriterDone);
+            NextArrow.GetComponent<Animation>()?.Play();
+        }
+    }
+
+    public void OnChoice(PlayerActionType actionType)
+    {
+        switch (actionType)
+        {
+            case PlayerActionType.Leave:
+                OnHide();
+                break;
+        }
+    }
+
+    private void OnHide()
+    {
+        Controller.SetBool(IsShowing, false);
+        cachedPlayer.IsFrozen = false;
     }
 }
