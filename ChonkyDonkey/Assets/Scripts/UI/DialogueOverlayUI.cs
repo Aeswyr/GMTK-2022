@@ -12,9 +12,8 @@ public class DialogueOverlayUI : MonoBehaviour
     public CharacterDialogueSpriteCollection[] CharacterSprites;
     
     // animator triggers
-    private static readonly int Greet = Animator.StringToHash("Greet");
-    private static readonly int Happy = Animator.StringToHash("Happy");
-    private static readonly int Angry = Animator.StringToHash("Angry");
+    private static readonly int IsShowing = Animator.StringToHash("IsShowing");
+    private static readonly int CharacterChanged = Animator.StringToHash("CharacterChanged");
 
     public void OnGreetDog(int dogId, int affinity)
     {
@@ -37,10 +36,12 @@ public class DialogueOverlayUI : MonoBehaviour
         var dog = StatsLoader.Get(dogId);
 
         // play the show animation
-        Controller.SetTrigger(Greet);
+        Controller.SetBool(IsShowing, true);
 
         // set the character sprite
         CharacterIcon.sprite = CharacterSprites[dogId].Get(reactionType);
+        // bounce
+        Controller.SetTrigger(CharacterChanged);
 
         // queue the dog's name and text
         NameLabel.text = dog.DisplayName;
