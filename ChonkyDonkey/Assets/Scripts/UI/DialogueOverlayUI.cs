@@ -189,7 +189,7 @@ public class DialogueOverlayUI : MonoBehaviour
     
     public void OnLeavePressed()
     {
-        OnChoice(PlayerActionType.Invite);
+        OnChoice(PlayerActionType.Leave);
     }
 
     private void OnHide()
