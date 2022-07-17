@@ -9,9 +9,9 @@ public class AffinityBar : MonoBehaviour
     private GameObject takeAllHomeCanvas;
     private Image heartBar;
     private float maxAffinity = 50;
-    public float dog1Affinity;
-    public float dog2Affinity;
-    public float dog3Affinity;
+    public static float dog1Affinity;
+    public static float dog2Affinity;
+    public static float dog3Affinity;
     private float currentDogAffinity = 10;
     private int currentDogTag;
 
