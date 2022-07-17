@@ -904,34 +904,44 @@ MonoBehaviour:
   AwooButton: {fileID: 8334892479196534280}
   InviteButton: {fileID: 2482670323218781091}
   CharacterSprites:
-  - Default: {fileID: 21300000, guid: 0d07bf73ce1d34cc2b44d3d6ab0fd939, type: 3}
+  - Character: 0
+    Default: {fileID: 21300000, guid: 0d07bf73ce1d34cc2b44d3d6ab0fd939, type: 3}
     Happy: {fileID: 21300000, guid: c3fb3fe0a36aa4e0c96952bb9999370e, type: 3}
     Angry: {fileID: 21300000, guid: b58905efa182c478598505aed339c6cc, type: 3}
-  - Default: {fileID: 21300000, guid: 0d07bf73ce1d34cc2b44d3d6ab0fd939, type: 3}
+  - Character: 1
+    Default: {fileID: 21300000, guid: 0d07bf73ce1d34cc2b44d3d6ab0fd939, type: 3}
     Happy: {fileID: 21300000, guid: c3fb3fe0a36aa4e0c96952bb9999370e, type: 3}
     Angry: {fileID: 21300000, guid: b58905efa182c478598505aed339c6cc, type: 3}
-  - Default: {fileID: 21300000, guid: 0d07bf73ce1d34cc2b44d3d6ab0fd939, type: 3}
+  - Character: 2
+    Default: {fileID: 21300000, guid: b169af7c1367b440d9f9a6c379375d46, type: 3}
+    Happy: {fileID: 21300000, guid: b169af7c1367b440d9f9a6c379375d46, type: 3}
+    Angry: {fileID: 21300000, guid: b169af7c1367b440d9f9a6c379375d46, type: 3}
+  - Character: 3
+    Default: {fileID: 21300000, guid: 0d07bf73ce1d34cc2b44d3d6ab0fd939, type: 3}
     Happy: {fileID: 21300000, guid: c3fb3fe0a36aa4e0c96952bb9999370e, type: 3}
     Angry: {fileID: 21300000, guid: b58905efa182c478598505aed339c6cc, type: 3}
-  - Default: {fileID: 21300000, guid: 0d07bf73ce1d34cc2b44d3d6ab0fd939, type: 3}
+  - Character: 4
+    Default: {fileID: 21300000, guid: 0d07bf73ce1d34cc2b44d3d6ab0fd939, type: 3}
     Happy: {fileID: 21300000, guid: c3fb3fe0a36aa4e0c96952bb9999370e, type: 3}
     Angry: {fileID: 21300000, guid: b58905efa182c478598505aed339c6cc, type: 3}
-  - Default: {fileID: 21300000, guid: 0d07bf73ce1d34cc2b44d3d6ab0fd939, type: 3}
-    Happy: {fileID: 21300000, guid: c3fb3fe0a36aa4e0c96952bb9999370e, type: 3}
-    Angry: {fileID: 21300000, guid: b58905efa182c478598505aed339c6cc, type: 3}
-  - Default: {fileID: 21300000, guid: 0d07bf73ce1d34cc2b44d3d6ab0fd939, type: 3}
-    Happy: {fileID: 21300000, guid: c3fb3fe0a36aa4e0c96952bb9999370e, type: 3}
-    Angry: {fileID: 21300000, guid: b58905efa182c478598505aed339c6cc, type: 3}
-  - Default: {fileID: 21300000, guid: 7163478f9e5694ca1aa10126c297f1f4, type: 3}
+  - Character: 5
+    Default: {fileID: 21300000, guid: 9caef1a41ac4c4ae096b50a9116d6bea, type: 3}
+    Happy: {fileID: 21300000, guid: 9caef1a41ac4c4ae096b50a9116d6bea, type: 3}
+    Angry: {fileID: 21300000, guid: 9caef1a41ac4c4ae096b50a9116d6bea, type: 3}
+  - Character: 6
+    Default: {fileID: 21300000, guid: 7163478f9e5694ca1aa10126c297f1f4, type: 3}
     Happy: {fileID: 21300000, guid: 7163478f9e5694ca1aa10126c297f1f4, type: 3}
     Angry: {fileID: 21300000, guid: 7163478f9e5694ca1aa10126c297f1f4, type: 3}
-  - Default: {fileID: 21300000, guid: 0d07bf73ce1d34cc2b44d3d6ab0fd939, type: 3}
+  - Character: 7
+    Default: {fileID: 21300000, guid: 0703869d683514d0483b447e809fab30, type: 3}
+    Happy: {fileID: 21300000, guid: 0703869d683514d0483b447e809fab30, type: 3}
+    Angry: {fileID: 21300000, guid: 0703869d683514d0483b447e809fab30, type: 3}
+  - Character: 8
+    Default: {fileID: 21300000, guid: 0d07bf73ce1d34cc2b44d3d6ab0fd939, type: 3}
     Happy: {fileID: 21300000, guid: c3fb3fe0a36aa4e0c96952bb9999370e, type: 3}
     Angry: {fileID: 21300000, guid: b58905efa182c478598505aed339c6cc, type: 3}
-  - Default: {fileID: 21300000, guid: 0d07bf73ce1d34cc2b44d3d6ab0fd939, type: 3}
-    Happy: {fileID: 21300000, guid: c3fb3fe0a36aa4e0c96952bb9999370e, type: 3}
-    Angry: {fileID: 21300000, guid: b58905efa182c478598505aed339c6cc, type: 3}
-  - Default: {fileID: 21300000, guid: 0d07bf73ce1d34cc2b44d3d6ab0fd939, type: 3}
+  - Character: 9
+    Default: {fileID: 21300000, guid: 0d07bf73ce1d34cc2b44d3d6ab0fd939, type: 3}
     Happy: {fileID: 21300000, guid: c3fb3fe0a36aa4e0c96952bb9999370e, type: 3}
     Angry: {fileID: 21300000, guid: b58905efa182c478598505aed339c6cc, type: 3}
   TypewriterSpeed: 10

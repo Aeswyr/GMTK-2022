@@ -69,7 +69,7 @@ public class DialogueOverlayUI : MonoBehaviour
         Controller.SetBool(IsShowing, true);
 
         // set the character sprite
-        CharacterIcon.sprite = CharacterSprites[dogId].Get(reactionType);
+        CharacterIcon.sprite = GetSprites(dogId).Get(reactionType);
         // bounce
         Controller.SetTrigger(CharacterChanged);
 
@@ -84,6 +84,22 @@ public class DialogueOverlayUI : MonoBehaviour
         // invite and awoo are mutually exclusive by-design
         AwooButton.SetActiveFast(dog.CanAwoo);
         InviteButton.SetActiveFast(!dog.CanAwoo);
+    }
+
+    private CharacterDialogueSpriteCollection GetSprites(int id)
+    {
+        if (CharacterSprites.TryGet(id, out var collection))
+        {
+            if ((int)collection.Character != id)
+            {
+                Debug.LogWarning("Character does not match id");
+            }
+            return collection;
+        }
+        else
+        {
+            return CharacterSprites.Length > 0 ? CharacterSprites[0] : default;
+        }
     }
 
     private void Update()

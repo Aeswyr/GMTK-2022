@@ -4,6 +4,7 @@ using UnityEngine;
 [Serializable]
 public struct CharacterDialogueSpriteCollection
 {
+    public IdentityType Character;
     public Sprite Default;
     public Sprite Happy;
     public Sprite Angry;

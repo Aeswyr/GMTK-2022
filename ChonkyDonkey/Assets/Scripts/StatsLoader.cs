@@ -6,7 +6,7 @@ using Random = System.Random;
 
 public static class StatsLoader
 {
-    public const int
+    private const int
         ID = 0,
         Name = 1,
         CanAwoo = 2,
@@ -151,14 +151,18 @@ public struct DogStatsBlock
     }
 }
 
-public static class DogConstants
+public enum IdentityType
 {
     // ReSharper disable IdentifierTypo
-    public const int
-        Kaiba = 1,
-        Kiefy = 2,
-        Leafeon = 3,
-        Umbreon = 4,
-        Haku = 5;
+    Default = 0,
+    Kaiba = 1,
+    Kiefy = 2,
+    Leafeon = 3,
+    Umbreon = 4,
+    Haku = 5,
+    KateAndOlive = 6,
+    Sesame = 7,
+    Riggs = 8,
+    BeansAndKnuckels = 9,
     // ReSharper restore IdentifierTypo
 }
