@@ -8,11 +8,14 @@ public class OptionsScreen : MonoBehaviour
     public Slider volumeSlider;
     public Toggle soundToggle;
 
-    public void OnAwake()
+    public void Awake()
     {
-        // TODO sync these values to some global settings object
-        volumeSlider.SetValueWithoutNotify(0.5f);
-        soundToggle.SetIsOnWithoutNotify(true);
+        volumeSlider.SetValueWithoutNotify(SFXHelper.Instance.Volume);
+        soundToggle.SetIsOnWithoutNotify(SFXHelper.Instance.SoundEnabled);
+
+        soundToggle.onValueChanged.AddListener(delegate {
+            OnSoundToggleChanged(soundToggle);
+        });
     }
 
     public void OnBackButtonClicked() 
@@ -22,11 +25,11 @@ public class OptionsScreen : MonoBehaviour
 
     public void OnSliderChanged() 
     {
-        Debug.Log($"OnSliderChanged: {volumeSlider.value}");
+        SFXHelper.Instance.Volume = volumeSlider.value;
     }
-    
-    public void OnSoundToggleChanged(bool value)
+
+    void OnSoundToggleChanged(Toggle change)
     {
-        Debug.Log($"OnSoundToggleChanged: {value}");
+        SFXHelper.Instance.SoundEnabled = soundToggle.isOn;
     }
 }

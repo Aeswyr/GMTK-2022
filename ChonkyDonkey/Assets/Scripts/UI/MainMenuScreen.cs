@@ -11,8 +11,16 @@ public class MainMenuScreen : MonoBehaviour
 
     public void OnPlayClicked()
     {
+        StartCoroutine(PlayCoroutine());
+    }
+
+    private IEnumerator PlayCoroutine() 
+    {
+        SFXHelper.PlaySound(SFXHelper.mainMenuSqueakyName);
+
+        yield return new WaitForSeconds(.5f);
+
         SceneManager.LoadScene("GameScene", LoadSceneMode.Single);
-        
     }
 
     public void OnOptionsClicked() 
