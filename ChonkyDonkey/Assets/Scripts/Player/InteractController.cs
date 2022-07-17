@@ -10,21 +10,17 @@ public class InteractController : MonoBehaviour
     private ContactFilter2D filter;
     void Awake() {
         filter.useTriggers = true;
-        filter.layerMask = LayerMask.GetMask("Interactable");
+        filter.SetLayerMask(LayerMask.GetMask("Interactable"));
     }
     void OnTriggerEnter2D(Collider2D other) {
-        if (other.gameObject.layer != LayerMask.NameToLayer("Interactable"))
-            return;
         interactEmote.SetActive(true);
     }
 
     void OnTriggerExit2D(Collider2D other) {
-        if (other.gameObject.layer != LayerMask.NameToLayer("Interactable"))
-            return;
         List<RaycastHit2D> hits = new List<RaycastHit2D>();
         interactBox.Cast(Vector2.zero, filter, hits);
 
-        if (hits.Count == 1)
+        if (hits.Count == 0)
             interactEmote.SetActive(false);
     }
 
