@@ -12,18 +12,18 @@ public static class StatsLoader
         Greeting0 = 3,
         Good0 = 4,
         Bad0 = 5,
-        Greeting10 = 3,
-        Good10 = 4,
-        Bad10 = 5,
-        Greeting20 = 3,
-        Good20 = 4,
-        Bad20 = 5,
-        Greeting30 = 3,
-        Good30 = 4,
-        Bad30 = 5,
-        Greeting40 = 3,
-        Good40 = 4,
-        Bad40 = 5;
+        Greeting10 = 6,
+        Good10 = 7,
+        Bad10 = 8,
+        Greeting20 = 9,
+        Good20 = 10,
+        Bad20 = 11,
+        Greeting30 = 12,
+        Good30 = 13,
+        Bad30 = 14,
+        Greeting40 = 15,
+        Good40 = 16,
+        Bad40 = 17;
     
     
     public static DogStatsBlock[] Stats { get; private set; }
@@ -134,9 +134,10 @@ public struct DogStatsBlock
             {
                 int idx = (randomIndex + i) % category.Length;
                 if (string.IsNullOrEmpty(category[idx])) continue;
+                if (string.CompareOrdinal(category[idx], "<Replace Me>") == 0) continue;
                 return category[idx];
             }
-            return "missing for " + ID + " " + reactionType;
+            return "missing all entries for " + (PetId)ID + " " + reactionType;
         }
         
         int index = DogHelper.GetAffinityIndex(affinity);

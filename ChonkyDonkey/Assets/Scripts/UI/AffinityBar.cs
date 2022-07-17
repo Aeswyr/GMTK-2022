@@ -26,9 +26,9 @@ public class AffinityBar : MonoBehaviour
         takeOneHomeCanvas = GameObject.FindWithTag("TakeOneHomeCanvas");
         takeAllHomeCanvas = GameObject.FindWithTag("TakeAllHomeCanvas");
         heartBar = this.gameObject.GetComponent<Image>();
-        dog1Affinity = 20;
-        dog2Affinity = 10;
-        dog3Affinity = 5;
+        dog1Affinity = 50;
+        dog2Affinity = 50;
+        dog3Affinity = 50;
         drunkScript = FindObjectOfType<Drunkeness>();
 
         if (takeOneHomeCanvas.activeInHierarchy || takeAllHomeCanvas.activeInHierarchy)
