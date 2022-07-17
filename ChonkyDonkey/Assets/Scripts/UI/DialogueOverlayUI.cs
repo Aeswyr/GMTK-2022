@@ -20,6 +20,7 @@ public class DialogueOverlayUI : MonoBehaviour
     // animator triggers
     private static readonly int IsShowing = Animator.StringToHash("IsShowing");
     private static readonly int CharacterChanged = Animator.StringToHash("CharacterChanged");
+    private static readonly int OptionsShowing = Animator.StringToHash("OptionsShowing");
 
     public void OnGreetDog(int dogId, int affinity)
     {
@@ -70,14 +71,21 @@ public class DialogueOverlayUI : MonoBehaviour
             if (InputHandler.Instance.menu.pressed)
             {
                 Debug.Log("esc press");
+                Controller.SetBool(OptionsShowing, false);
                 OnChoice(PlayerActionType.Leave);
                 return;
             }
 
             if (InputHandler.Instance.interact.pressed)
             {
-                if (!typewriterDone) Typewriter.Finish();
-                typewriterDone = true;
+                if (typewriterDone)
+                {
+                    Controller.SetBool(OptionsShowing, true);
+                }
+                else
+                {
+                    typewriterDone = true;
+                }
             }
         }
 
@@ -90,12 +98,34 @@ public class DialogueOverlayUI : MonoBehaviour
 
     public void OnChoice(PlayerActionType actionType)
     {
+        Controller.SetBool(OptionsShowing, false);
         switch (actionType)
         {
             case PlayerActionType.Leave:
-                OnHide();
+                break;
+            case PlayerActionType.Awoo:
+                Debug.Log("Awoo TODO");
+                break;
+            case PlayerActionType.Invite:
+                Debug.Log("Invite TODO");
                 break;
         }
+        OnHide();
+    }
+
+    public void OnAwooPressed()
+    {
+        OnChoice(PlayerActionType.Awoo);
+    }
+
+    public void OnInvitePressed()
+    {
+        OnChoice(PlayerActionType.Invite);
+    }
+    
+    public void OnLeavePressed()
+    {
+        OnChoice(PlayerActionType.Invite);
     }
 
     private void OnHide()
