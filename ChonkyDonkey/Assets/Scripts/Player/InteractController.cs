@@ -10,7 +10,7 @@ public class InteractController : MonoBehaviour
     private ContactFilter2D filter;
     void Awake() {
         filter.useTriggers = true;
-        filter.layerMask = LayerMask.GetMask("Interactable");
+        filter.SetLayerMask(LayerMask.GetMask("Interactable"));
     }
     void OnTriggerEnter2D(Collider2D other) {
         interactEmote.SetActive(true);

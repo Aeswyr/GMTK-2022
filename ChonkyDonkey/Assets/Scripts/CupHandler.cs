@@ -4,10 +4,18 @@ using UnityEngine;
 
 public class CupHandler : MonoBehaviour
 {
-    public static int thirst = 0;
+    public int thirst = 0;
 
     private void OnMouseDown()
     {
-        Debug.Log(thirst + " Cup clicked");
+        if (FlipCupGameStats.canDrink && FlipCupGameStats.rolledPlayerDice)
+        {
+            Debug.Log(thirst + " Cup drank!");
+            FlipCupGameStats.thirst += thirst;
+            FlipCupGameStats.canDrink = false;
+            FlipCupGameStats.rolledPlayerDice = false;
+            RollDice.changeColor(Color.blue);
+            Destroy(gameObject);
+        }
     }
 }

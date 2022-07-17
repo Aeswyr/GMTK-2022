@@ -5,46 +5,64 @@ using UnityEngine;
 public class DiceSideCheck : MonoBehaviour
 {
     public Vector3 velocity;
+    public static int playerRoll = 0;
+    public static int npc1Roll = 0;
+    public static int npc2Roll = 0;
 
     void FixedUpdate()
     {
         velocity = RollDice.velocity;
+
+        if (!FlipCupGameStats.canDrink)
+        {
+            enableCollider(true);
+        }
     }
 
     void OnTriggerStay(Collider col)
     {
-        int roll = 0;
+        playerRoll = 0;
+        npc1Roll = 0;
+        npc2Roll = 0;
+
         if (velocity.x == 0f && velocity.y == 0f && velocity.z == 0f) {
-            switch (col.gameObject.name) {
+            string name = col.gameObject.name;
+            switch (name) {
                 case "Side1":
-                    Debug.Log("6");
-                    roll = 6;
+                    playerRoll = 6;
                     break;
-                case "Side2":
-                    Debug.Log("5");
-                    roll = 5;
+                case "NPC1Side1":
+                    npc1Roll = 6;
                     break;
-                case "Side3":
-                    Debug.Log("4");
-                    roll = 4;
-                    break;
-                case "Side4":
-                    Debug.Log("3");
-                    roll = 3;
-                    break;
-                case "Side5":
-                    Debug.Log("2");
-                    roll = 2;
-                    break;
-                case "Side6":
-                    Debug.Log("1");
-                    roll = 1;
+                case "NPC2Side1":
+                    npc2Roll = 6;
                     break;
             }
+            if (name == "Side1")
+            {
+                if (FlipCupGameStats.rolledPlayerDice && playerRoll == 6)
+                {
+                    RollDice.changeColor(Color.red);
+                    FlipCupGameStats.canDrink = true;
+                    enableCollider(false);
+                }
+            }
+            else
+            {
+                if (name == "NPC1Side1" && FlipCupGameStats.rolledNPC1Dice && npc1Roll == 6)
+                {
+                    RollDiceNPC.drinkRandomCup(col.gameObject.transform.parent.name);
+                }
+                if (name == "NPC2Side1" && FlipCupGameStats.rolledNPC2Dice && npc2Roll == 6)
+                {
+                    RollDiceNPC.drinkRandomCup(col.gameObject.transform.parent.name);
+                }
+            }
         }
-        if (roll == 6)
-        {
-            // do some stuff
-        }
+    }
+
+    private void enableCollider(bool status)
+    {
+        GetComponent<BoxCollider>().enabled = status;
     }
 }

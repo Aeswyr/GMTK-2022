@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Drunkeness : MonoBehaviour
@@ -11,10 +9,16 @@ public class Drunkeness : MonoBehaviour
 
     [SerializeField] private int rollScale = 1;
 
-    private int[] rollModifiers; 
+    private int[] rollModifiers;
 
-    // Start is called before the first frame update
-    void Start()
+    private readonly Color neutralColor = Color.yellow; 
+    private readonly Color buzzedColor = Color.green; 
+    private readonly Color wastedColor = Color.red;
+
+    public delegate void Notify();
+    public event Notify DrunkenessChanged;
+
+    void Awake()
     {
         rollModifiers = CreateDrunkenessArray();
     }
@@ -27,12 +31,20 @@ public class Drunkeness : MonoBehaviour
 
     public void ConsumeDrink(int drinkValue)
     {
-        currentIndex += drinkValue;
+        if(currentIndex < maxIndex)
+        {
+            currentIndex += drinkValue;
+            DrunkenessChanged?.Invoke();
+        }
     }
 
     public void ReduceDrunkeness(int value)
     {
-        currentIndex -= value;
+        if (currentIndex > 0)
+        {
+            currentIndex -= value;
+            DrunkenessChanged?.Invoke();
+        }
     }
 
     public int GetRollModifier()
@@ -42,7 +54,23 @@ public class Drunkeness : MonoBehaviour
 
     public float GetDrunkenessPercentage()
     {
-        return currentIndex / maxIndex;
+        return currentIndex / (float) maxIndex;
+    }
+
+    public Color GetIntoxicationColor()
+    {
+        int rollModifier = GetRollModifier();
+        
+        if(rollModifier > 0)
+        {
+            return buzzedColor;
+        }
+        else if(rollModifier < 0)
+        {
+            return wastedColor;
+        }
+
+        return neutralColor;
     }
 
     private int[] CreateDrunkenessArray()
