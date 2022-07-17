@@ -17,12 +17,11 @@ public class RollDice : MonoBehaviour
         initialPosition = gameObject.transform.position;
     }
 
-    void Update()
+    void FixedUpdate()
     {
         velocity = rb.velocity;
-
-        
-        if (Input.GetKeyDown(KeyCode.Space))
+        bool notMoving = (rb.velocity.x == 0f && rb.velocity.y == 0f && rb.velocity.z == 0f);
+        if (InputHandler.Instance.interact.down && !FlipCupGameStats.canDrink && notMoving)
         {
             FlipCupGameStats.rolledPlayerDice = true;
             rollDice();
@@ -36,12 +35,13 @@ public class RollDice : MonoBehaviour
 
     private void rollDice()
     {
-        float dirX = Random.Range(0, 500);
-        float dirY = Random.Range(0, 500);
-        float dirZ = Random.Range(0, 500);
+        FlipCupGameStats.spendDice();
+        float dirX = Random.Range(50, 300);
+        float dirY = Random.Range(50, 300);
+        float dirZ = Random.Range(50, 300);
         transform.position = initialPosition;
         transform.rotation = Quaternion.identity;
-        rb.AddForce(transform.up * 500);
+        rb.AddForce(transform.up * 100);
         rb.AddTorque(dirX, dirY, dirZ);
     }
 }

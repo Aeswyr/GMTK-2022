@@ -2812,6 +2812,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 527977733}
     m_Modifications:
+    - target: {fileID: 762604095988956029, guid: f5bf136a8698bfe4e8667b1447613f12, type: 3}
+      propertyPath: m_Color.a
+      value: 0.4117647
+      objectReference: {fileID: 0}
+    - target: {fileID: 762604095988956029, guid: f5bf136a8698bfe4e8667b1447613f12, type: 3}
+      propertyPath: m_Color.b
+      value: 0.8901961
+      objectReference: {fileID: 0}
+    - target: {fileID: 762604095988956029, guid: f5bf136a8698bfe4e8667b1447613f12, type: 3}
+      propertyPath: m_Color.g
+      value: 0.9490196
+      objectReference: {fileID: 0}
+    - target: {fileID: 762604095988956029, guid: f5bf136a8698bfe4e8667b1447613f12, type: 3}
+      propertyPath: m_Color.r
+      value: 0.98039216
+      objectReference: {fileID: 0}
     - target: {fileID: 762604096102228698, guid: f5bf136a8698bfe4e8667b1447613f12, type: 3}
       propertyPath: m_Name
       value: MainMenuScreen
@@ -2908,6 +2924,10 @@ PrefabInstance:
       propertyPath: optionsScreen
       value: 
       objectReference: {fileID: 6975926039797333645}
+    - target: {fileID: 762604097474754470, guid: f5bf136a8698bfe4e8667b1447613f12, type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 512
+      objectReference: {fileID: 0}
     - target: {fileID: 6168339432288896819, guid: f5bf136a8698bfe4e8667b1447613f12, type: 3}
       propertyPath: m_IsActive
       value: 0
