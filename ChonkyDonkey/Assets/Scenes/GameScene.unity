@@ -123,6 +123,17 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &159606995 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1327884960624187184, guid: cc118666af458414f8146277bd660bdb, type: 3}
+  m_PrefabInstance: {fileID: 3015542199821977131}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7117688a6930314288d0a9c8202687c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &400462472
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -790,6 +801,38 @@ PrefabInstance:
       propertyPath: m_Tiles.Array.data[19].second.m_TileSpriteIndex
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4270690769071682708, guid: f4b86e27130f80f4cb09905b9077371d, type: 3}
+      propertyPath: action.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4270690769071682708, guid: f4b86e27130f80f4cb09905b9077371d, type: 3}
+      propertyPath: action.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4270690769071682708, guid: f4b86e27130f80f4cb09905b9077371d, type: 3}
+      propertyPath: action.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 159606995}
+    - target: {fileID: 4270690769071682708, guid: f4b86e27130f80f4cb09905b9077371d, type: 3}
+      propertyPath: action.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4270690769071682708, guid: f4b86e27130f80f4cb09905b9077371d, type: 3}
+      propertyPath: action.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: ShowThisDogsAffinity
+      objectReference: {fileID: 0}
+    - target: {fileID: 4270690769071682708, guid: f4b86e27130f80f4cb09905b9077371d, type: 3}
+      propertyPath: action.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: AffinityBar, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4270690769071682708, guid: f4b86e27130f80f4cb09905b9077371d, type: 3}
+      propertyPath: action.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_IntArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4270690769071682708, guid: f4b86e27130f80f4cb09905b9077371d, type: 3}
+      propertyPath: action.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 4448017226125567922, guid: f4b86e27130f80f4cb09905b9077371d, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -1048,7 +1091,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 2.9296875
+  orthographic size: 2.8125
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1688,7 +1731,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 136581758971218587, guid: e2043e27184bc4d33ba216973cf70696, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -423.40002
       objectReference: {fileID: 0}
     - target: {fileID: 343066981968755508, guid: e2043e27184bc4d33ba216973cf70696, type: 3}
       propertyPath: m_AnchorMax.y
@@ -1704,7 +1747,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 343066981968755508, guid: e2043e27184bc4d33ba216973cf70696, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -620.03345
       objectReference: {fileID: 0}
     - target: {fileID: 445654077819561473, guid: e2043e27184bc4d33ba216973cf70696, type: 3}
       propertyPath: m_AnchorMax.y
@@ -1730,6 +1773,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1443917766500682052, guid: e2043e27184bc4d33ba216973cf70696, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1518241130863433457, guid: e2043e27184bc4d33ba216973cf70696, type: 3}
       propertyPath: m_Name
       value: DialogueOverlay
@@ -1748,7 +1795,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2187115209294381093, guid: e2043e27184bc4d33ba216973cf70696, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -226.76663
       objectReference: {fileID: 0}
     - target: {fileID: 7219948664179152324, guid: e2043e27184bc4d33ba216973cf70696, type: 3}
       propertyPath: m_Pivot.x
