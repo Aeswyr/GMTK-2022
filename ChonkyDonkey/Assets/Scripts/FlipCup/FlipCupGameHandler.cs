@@ -21,14 +21,6 @@ public class FlipCupGameHandler : MonoBehaviour
         FlipCup.SetActive(false);
     }
 
-    private void FixedUpdate()
-    {
-        if (InputHandler.Instance.move.down)
-        {
-            ToggleFlipCup();
-        }
-    }
-
     public void ToggleFlipCup()
     {
         MainCamera.SetActive(!MainCamera.activeInHierarchy);

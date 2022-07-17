@@ -5,17 +5,19 @@ using UnityEngine;
 public class ModeManager : Singleton<ModeManager>
 {
     public Camera BarCam;
-    public GameObject FlipCup;
+    public FlipCupGameHandler FlipCup;
     public GameObject Awoo;
     
     public GameMode Mode;
 
     public void ChangeMode(GameMode newMode)
     {
-        Mode = newMode;
+        if (Mode != newMode && (Mode == GameMode.CupDice || newMode == GameMode.CupDice)) FlipCup.ToggleFlipCup();
         BarCam.gameObject.SetActive(newMode == GameMode.Bar || newMode == GameMode.Dialogue);
-        FlipCup.SetActive(newMode == GameMode.CupDice);
+        //FlipCup.gameObject.SetActive(newMode == GameMode.CupDice);
         // Awoo.SetActive(newMode == gameMode.AwooDice);
+        
+        Mode = newMode;
     }
 }
 
