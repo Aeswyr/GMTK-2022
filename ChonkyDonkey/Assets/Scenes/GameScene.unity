@@ -2262,6 +2262,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: FlipCupHUD
       objectReference: {fileID: 0}
+    - target: {fileID: 8727010151373297434, guid: 9fd19418ee88f3f4ab892eb1eaf1e834, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9fd19418ee88f3f4ab892eb1eaf1e834, type: 3}
 --- !u!114 &801790501 stripped
@@ -2406,6 +2410,11 @@ MonoBehaviour:
   m_YawDamping: 0
   m_RollDamping: 0
   m_AngularDamping: 0
+--- !u!1 &1159177237 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8727010151373297434, guid: 9fd19418ee88f3f4ab892eb1eaf1e834, type: 3}
+  m_PrefabInstance: {fileID: 793877655}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1233447921
 GameObject:
   m_ObjectHideFlags: 0
@@ -2697,7 +2706,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2000745700
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2872,6 +2881,10 @@ PrefabInstance:
       propertyPath: Overlay
       value: 
       objectReference: {fileID: 1234930406}
+    - target: {fileID: 2413624495277085057, guid: be73ea0f3e7bf654d83de40cfe63d099, type: 3}
+      propertyPath: FlipCupHUD
+      value: 
+      objectReference: {fileID: 1159177237}
     - target: {fileID: 2413624495277085057, guid: be73ea0f3e7bf654d83de40cfe63d099, type: 3}
       propertyPath: MainCamera
       value: 
