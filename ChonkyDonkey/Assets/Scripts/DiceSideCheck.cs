@@ -4,15 +4,12 @@ using UnityEngine;
 
 public class DiceSideCheck : MonoBehaviour
 {
-    public Vector3 velocity;
     public static int playerRoll = 0;
     public static int npc1Roll = 0;
     public static int npc2Roll = 0;
 
     void FixedUpdate()
     {
-        velocity = RollDice.velocity;
-
         if (!FlipCupGameStats.canDrink)
         {
             enableCollider(true);
@@ -24,8 +21,8 @@ public class DiceSideCheck : MonoBehaviour
         playerRoll = 0;
         npc1Roll = 0;
         npc2Roll = 0;
-
-        if (velocity.x == 0f && velocity.y == 0f && velocity.z == 0f) {
+        Rigidbody rb = col.gameObject.transform.parent.GetComponent<Rigidbody>();
+        if (rb.velocity.x == 0f && rb.velocity.y == 0f && rb.velocity.z == 0f) {
             string name = col.gameObject.name;
             switch (name) {
                 case "Side1":
@@ -55,7 +52,7 @@ public class DiceSideCheck : MonoBehaviour
                 }
                 if (name == "NPC2Side1" && FlipCupGameStats.rolledNPC2Dice && npc2Roll == 6)
                 {
-                    RollDiceNPC.drinkRandomCup(col.gameObject.transform.parent.name);
+                    RollDiceNPC2.drinkRandomCup(col.gameObject.transform.parent.name);
                 }
             }
         }

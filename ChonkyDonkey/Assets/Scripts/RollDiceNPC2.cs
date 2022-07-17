@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RollDiceNPC : MonoBehaviour
+public class RollDiceNPC2 : MonoBehaviour
 {
     public static Vector3 velocity;
     public static int roll = 0;
@@ -52,7 +52,7 @@ public class RollDiceNPC : MonoBehaviour
         float dirX = Random.Range(0, 200);
         float dirY = Random.Range(0, 200);
         float dirZ = Random.Range(0, 200);
-        transform.position = transform.parent.position + new Vector3(0, 2f, 0);
+        transform.position = transform.parent.position + new Vector3(0, 2f, -4f);
         transform.rotation = Quaternion.identity;
         rb.AddForce(transform.up * 500);
         rb.AddTorque(dirX, dirY, dirZ);
