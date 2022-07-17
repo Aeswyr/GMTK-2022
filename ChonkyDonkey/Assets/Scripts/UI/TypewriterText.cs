@@ -32,18 +32,9 @@ public class TypewriterText : MonoBehaviour
 
         // params
         inputData = new InputData { FullText = text, TypewriterSounds = sounds ?? new AudioClip[] { soundSource.clip }, TypewriterSpeed = lettersPerSecond };
-
-        // appending?
-        if (text.StartsWith(prev, System.StringComparison.Ordinal))
-        {
-            textAppearingAnimationProgress = prev.Length;
-            SetText(prev); // dialogueLabel.text handled by Update()
-        }
-        // resetting
-        else
-        {
-            VisualReset(startingProgress);
-        }
+        
+        VisualReset(startingProgress);
+        
         textAppearingAnimationProgress -= (inputData.TypewriterSpeed * delay); 
     }
 

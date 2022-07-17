@@ -15,6 +15,13 @@ public class DialogueOverlayUI : MonoBehaviour
     [Header("Assets")]
     public CharacterDialogueSpriteCollection[] CharacterSprites;
 
+    [Header("Config")] 
+    public float TypewriterSpeed;
+    public float TypewriterDelay;
+    
+    // apparently, the new input system's "pressed" doesn't work like the old one, so tracking the pressed state here
+    private bool inputFlag;
+
     private PlayerController cachedPlayer;
 
     // animator triggers
@@ -67,7 +74,7 @@ public class DialogueOverlayUI : MonoBehaviour
         NameLabel.text = dog.DisplayName;
 
         // start the typewriter
-        Typewriter.PlayTypewriter(dog.GetLine(reactionType, affinity), 10, delay: 1f);
+        Typewriter.PlayTypewriter(dog.GetLine(reactionType, affinity), TypewriterSpeed, delay: TypewriterDelay);
     }
 
     private void Update()
@@ -80,13 +87,12 @@ public class DialogueOverlayUI : MonoBehaviour
             if (InputHandler.Instance.menu.pressed)
             {
                 Debug.Log("esc press");
-                Controller.SetBool(OptionsShowing, false);
                 OnChoice(PlayerActionType.Leave);
                 return;
             }
 
             // interact is contextual
-            if (InputHandler.Instance.interact.pressed)
+            if (InputHandler.Instance.interact.pressed && !inputFlag)
             {
                 // show options
                 if (typewriterDone)
@@ -99,6 +105,13 @@ public class DialogueOverlayUI : MonoBehaviour
                     typewriterDone = true;
                     Typewriter.Finish();
                 }
+
+                inputFlag = true;
+            }
+
+            if (InputHandler.Instance.interact.released)
+            {
+                inputFlag = false;
             }
         }
 
@@ -116,6 +129,7 @@ public class DialogueOverlayUI : MonoBehaviour
         switch (actionType)
         {
             case PlayerActionType.Leave:
+                Controller.SetBool(OptionsShowing, false);
                 break;
             case PlayerActionType.Awoo:
                 Debug.Log("Awoo TODO");
