@@ -23,10 +23,10 @@ public class FlipCupGameHandler : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (InputHandler.Instance.move.down)
-        {
-            ToggleFlipCup();
-        }
+        //if (InputHandler.Instance.move.down)
+       // {
+        //    ToggleFlipCup();
+       // }
     }
 
     public void ToggleFlipCup()
