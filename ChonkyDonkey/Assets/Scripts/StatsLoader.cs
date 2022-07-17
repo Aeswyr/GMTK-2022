@@ -151,7 +151,7 @@ public struct DogStatsBlock
     }
 }
 
-public enum IdentityType
+public enum PetId
 {
     // ReSharper disable IdentifierTypo
     Default = 0,

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TalkingCharacterBehavior : MonoBehaviour
 {
-    public int CharacterId;
+    public PetId CharacterId;
 
     public void ShowDialogueForCharacter()
     {

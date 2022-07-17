@@ -1,5 +1,4 @@
 using TMPro;
-using UnityEditor.ShaderGraph.Serialization;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -40,27 +39,29 @@ public class DialogueOverlayUI : MonoBehaviour
     }
 
 
-    public void OnGreetDog(int dogId)
+    public void OnGreetDog(PetId dogId)
     {
         int affinity = 0; // TODO get affinity
         OnTalk(dogId, affinity, DogReactionType.Greeting);
     }
     
-    public void OnSuccess(int dogId, int affinity)
+    public void OnSuccess(PetId dogId, int affinity)
     {
         OnTalk(dogId, affinity, DogReactionType.Happy);
     }
     
-    public void OnFail(int dogId, int affinity)
+    public void OnFail(PetId dogId, int affinity)
     {
         OnTalk(dogId, affinity, DogReactionType.Angry);
     }
 
-    private void OnTalk(int dogId, int affinity, DogReactionType reactionType)
+    private void OnTalk(PetId pet, int affinity, DogReactionType reactionType)
     {
         // ReSharper disable once Unity.NoNullCoalescing
         cachedPlayer = cachedPlayer ?? FindObjectOfType<PlayerController>();
         cachedPlayer.IsFrozen = true;
+
+        int dogId = (int)pet;
 
         // load the dialogue text
         var dog = StatsLoader.Get(dogId);
@@ -69,7 +70,7 @@ public class DialogueOverlayUI : MonoBehaviour
         Controller.SetBool(IsShowing, true);
 
         // set the character sprite
-        CharacterIcon.sprite = GetSprites(dogId).Get(reactionType);
+        CharacterIcon.sprite = GetSprites(pet).Get(reactionType);
         // bounce
         Controller.SetTrigger(CharacterChanged);
 
@@ -86,11 +87,11 @@ public class DialogueOverlayUI : MonoBehaviour
         InviteButton.SetActiveFast(!dog.CanAwoo);
     }
 
-    private CharacterDialogueSpriteCollection GetSprites(int id)
+    private CharacterDialogueSpriteCollection GetSprites(PetId id)
     {
-        if (CharacterSprites.TryGet(id, out var collection))
+        if (CharacterSprites.TryGet((int)id, out var collection))
         {
-            if ((int)collection.Character != id)
+            if (collection.Character != id)
             {
                 Debug.LogWarning("Character does not match id");
             }
