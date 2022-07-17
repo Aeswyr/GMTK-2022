@@ -113,8 +113,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -120, y: -100}
+  m_AnchoredPosition: {x: -69.08351, y: -4.1102}
+  m_SizeDelta: {x: -258.167, y: -72.565}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &519131106
 CanvasRenderer:
@@ -144,7 +144,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: It's a doggy-dog world out there.
+  m_text: It's a doggy-dog world out there. What if this runs onto two lines and
+    is long?
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -240,7 +241,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 1400e03fab3904795a447636ae2a21f7, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -944,7 +945,7 @@ MonoBehaviour:
     Default: {fileID: 21300000, guid: 0d07bf73ce1d34cc2b44d3d6ab0fd939, type: 3}
     Happy: {fileID: 21300000, guid: c3fb3fe0a36aa4e0c96952bb9999370e, type: 3}
     Angry: {fileID: 21300000, guid: b58905efa182c478598505aed339c6cc, type: 3}
-  TypewriterSpeed: 10
+  TypewriterSpeed: 20
   TypewriterDelay: 0.1
 --- !u!95 &5013276838199390451
 Animator:
@@ -1938,7 +1939,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 20, y: 116.00003}
+  m_AnchoredPosition: {x: 20, y: 136}
   m_SizeDelta: {x: 0, y: 129.8}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &7266074408287108188
