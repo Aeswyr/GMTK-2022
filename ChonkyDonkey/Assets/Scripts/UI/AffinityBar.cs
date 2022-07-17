@@ -53,7 +53,7 @@ public class AffinityBar : MonoBehaviour
     }
 
     // call this from the interactable GO when starting a conversation with a dog
-    public void ShowThisDogsAffinity(int dogTag)
+    public int ShowThisDogsAffinity(int dogTag)
     {
         currentDogTag = dogTag;
 
@@ -78,6 +78,8 @@ public class AffinityBar : MonoBehaviour
         }
 
         heartBar.fillAmount = currentDogAffinity / maxAffinity;
+
+        return (int)currentDogAffinity;
     }
 
     public void HideAffinity()
