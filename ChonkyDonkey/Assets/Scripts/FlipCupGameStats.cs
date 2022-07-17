@@ -15,7 +15,7 @@ public class FlipCupGameStats : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (InputHandler.Instance.interact.pressed)
         {
             Debug.Log("Thirst Level: " + thirst);
         }
