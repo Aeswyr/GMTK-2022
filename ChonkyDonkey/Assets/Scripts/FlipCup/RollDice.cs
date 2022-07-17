@@ -35,6 +35,7 @@ public class RollDice : MonoBehaviour
 
     private void rollDice()
     {
+        AffinityBar.rolledDice = true;
         FlipCupGameStats.spendDice();
         float dirX = Random.Range(100, 300);
         float dirY = Random.Range(50, 300);

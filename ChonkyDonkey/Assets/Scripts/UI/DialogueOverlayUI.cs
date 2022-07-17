@@ -169,11 +169,12 @@ public class DialogueOverlayUI : MonoBehaviour
         switch (actionType)
         {
             case PlayerActionType.Leave:
+                affinityBarScript.HideAffinity();
                 Controller.SetBool(OptionsShowing, false);
                 break;
             case PlayerActionType.Awoo:
                 Debug.Log("Awoo " + prevPet);
-                affinityBarScript.OnTestRoll(); // TODO
+                ModeManager.Instance.ChangeMode(GameMode.AwooDice);
                 break;
             case PlayerActionType.Invite:
                 Debug.Log("Invited " + prevPet);
@@ -201,7 +202,7 @@ public class DialogueOverlayUI : MonoBehaviour
     private void OnHide()
     {
         Controller.SetBool(IsShowing, false);
-        affinityBarScript.HideAffinity();
+        
         if (ModeManager.Instance.Mode == GameMode.Dialogue)
         {
             ModeManager.Instance.ChangeMode(GameMode.Bar);
