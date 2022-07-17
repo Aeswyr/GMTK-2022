@@ -699,7 +699,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.4392157}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.8509804}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -950,10 +950,7 @@ MonoBehaviour:
   drunkMeter: {fileID: 5193429831511234339}
   drunkMeterFill: {fileID: 1174022130375150083}
   rollModifierText: {fileID: 8885034264342644396}
-  oldDrunkPercentage: 0
-  currentDrunkPercentage: 0
-  animationDrunkPercentage: 0
-  lerpInterpolation: 0
+  swayAnimation: {fileID: 0}
 --- !u!1 &4964458877114756114
 GameObject:
   m_ObjectHideFlags: 0
