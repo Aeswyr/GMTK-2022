@@ -21,11 +21,16 @@ public class RollDice : MonoBehaviour
     {
         velocity = rb.velocity;
         bool notMoving = (rb.velocity.x == 0f && rb.velocity.y == 0f && rb.velocity.z == 0f);
-        if (InputHandler.Instance.interact.down && !FlipCupGameStats.canDrink && notMoving)
+        if (InputHandler.Instance.interact.pressed && !FlipCupGameStats.canDrink && notMoving)
         {
             FlipCupGameStats.rolledPlayerDice = true;
             rollDice();
-        } 
+        }
+
+        if (InputHandler.Instance.menu.pressed)
+        {
+            ModeManager.Instance.ChangeMode(GameMode.Bar);
+        }
     }
 
     private void rollDice()

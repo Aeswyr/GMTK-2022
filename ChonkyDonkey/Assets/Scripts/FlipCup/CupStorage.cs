@@ -11,25 +11,34 @@ public class CupStorage : MonoBehaviour
     {
         if (endGameState())
         {
-            Debug.Log("Ending game!");
-            if (FlipCupGameStats.checkWinCondition())
-            {
-                FlipCupGameStats.rewardDice();
-            }
-            Debug.Log("Thirst Level Gained: " + FlipCupGameStats.thirst);
-            Debug.Log("Dice Spent: " + FlipCupGameStats.spentDice);
-            Debug.Log("Dice Count: " + FlipCupGameStats.diceCount);
-            restoreCups();
-            FlipCupGameHandler handler = flipCupGameHandler.GetComponent<FlipCupGameHandler>();
-            if (!handler.MainCamera.activeSelf)
-            {
-                handler.ToggleFlipCup();
-            }
+            EndGame();
+        }
+    }
 
-            if (FlipCupGameStats.diceCount < 0)
-            {
-                Time.timeScale = 0f;
-            }
+    public void EndGame()
+    {
+        Debug.Log("Ending game!");
+        if (FlipCupGameStats.checkWinCondition())
+        {
+            FlipCupGameStats.rewardDice();
+        }
+        Debug.Log("Thirst Level Gained: " + FlipCupGameStats.thirst);
+        Debug.Log("Dice Spent: " + FlipCupGameStats.spentDice);
+        Debug.Log("Dice Count: " + FlipCupGameStats.diceCount);
+        restoreCups();
+        FlipCupGameHandler handler = flipCupGameHandler.GetComponent<FlipCupGameHandler>();
+        
+        ModeManager.Instance.ChangeMode(GameMode.Bar);
+        
+        if (!handler.MainCamera.activeSelf)
+        {
+            //handler.ToggleFlipCup();
+        }
+
+        if (FlipCupGameStats.diceCount < 0)
+        {
+            // END THE GAME LOSE CONDITION
+            //Time.timeScale = 0f;
         }
     }
 
