@@ -21,6 +21,7 @@ public class RollDiceNPC2 : MonoBehaviour
         setFlag(name, false);
         GameObject allCups = GameObject.Find("Cups");
         int random = Random.Range(0, allCups.transform.childCount);
+        FlipCupGameStats.NPC2SixCount += 1;
 
         Destroy(allCups.transform.GetChild(random).gameObject);
     }
