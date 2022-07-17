@@ -38,7 +38,7 @@ public class AffinityBar : MonoBehaviour
         }
         if (this.gameObject.activeInHierarchy)
         {
-           // this.gameObject.SetActive(false);
+            this.gameObject.SetActive(false);
         }
     }
 
@@ -57,7 +57,7 @@ public class AffinityBar : MonoBehaviour
     // call this from the interactable GO when starting a conversation with a dog
     public void ShowThisDogsAffinity(int dogTag)
     {
-        //ToggleUiOn();
+        this.gameObject.SetActive(true);
         switch (dogTag)
         {
             case 1:
@@ -80,18 +80,10 @@ public class AffinityBar : MonoBehaviour
         heartBar.fillAmount = currentDogAffinity / maxAffinity;
     }
 
-   /* private void ToggleUiOn()
+    public void HideAffinity()
     {
-        if (this.gameObject.activeInHierarchy)
-        {
-            this.gameObject.SetActive(false);
-            CheckAffinity();
-        }
-        else
-        {
-            this.gameObject.SetActive(true);
-        }
-    }*/
+        this.gameObject.SetActive(false);
+    }
 
     // call this when updating the affinity bar after a dice roll
     public void UpdateAffinityAfterRoll(int dogTag)

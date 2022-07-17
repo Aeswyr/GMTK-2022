@@ -22,6 +22,15 @@ public class DialogueOverlayUI : MonoBehaviour
     private static readonly int CharacterChanged = Animator.StringToHash("CharacterChanged");
     private static readonly int OptionsShowing = Animator.StringToHash("OptionsShowing");
 
+    //Affinity Bar
+    private AffinityBar affinityBarScript;
+
+    private void Awake()
+    {
+        affinityBarScript = FindObjectOfType<AffinityBar>();
+    }
+
+
     public void OnGreetDog(int dogId, int affinity)
     {
         OnTalk(dogId, affinity, DogReactionType.Greeting);
@@ -132,5 +141,6 @@ public class DialogueOverlayUI : MonoBehaviour
     {
         Controller.SetBool(IsShowing, false);
         cachedPlayer.IsFrozen = false;
+        affinityBarScript.HideAffinity();
     }
 }
