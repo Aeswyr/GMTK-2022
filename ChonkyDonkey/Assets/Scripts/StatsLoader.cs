@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using Random = System.Random;
 
 public static class StatsLoader
 {
@@ -123,31 +122,41 @@ public struct DogStatsBlock
 
     public string GetLine(DogReactionType reactionType, int affinity)
     {
+        string[] category = GetCategory(reactionType);
+        
         // different behavior for non romantic characters, use random line
         if (!CanAwoo)
         {
-            
-            return "";
+            // randomly select a line
+            int randomIndex = UnityEngine.Random.Range(0, category.Length);
+            // search for the first non-empty line
+            for (int i = 0; i < category.Length; i++)
+            {
+                int idx = (randomIndex + i) % category.Length;
+                if (string.IsNullOrEmpty(category[idx])) continue;
+                return category[idx];
+            }
+            return "missing for " + ID + " " + reactionType;
         }
         
         int index = DogHelper.GetAffinityIndex(affinity);
-        string[] category;
+        return category.TryGet(index, out string s) ? s : category[0];
+        
+    }
+
+    private string[] GetCategory(DogReactionType reactionType)
+    {
         switch (reactionType)
         {
             case DogReactionType.Greeting:
-                category = Greetings;
-                break;
+                return Greetings;
             case DogReactionType.Happy:
-                category = GoodAnswer;
-                break;
+                return GoodAnswer;
             case DogReactionType.Angry:
-                category = BadAnswer;
-                break;
+                return BadAnswer;
             default:
                 throw new ArgumentOutOfRangeException(nameof(reactionType), reactionType, null);
         }
-        return category.TryGet(index, out string s) ? s : category[0];
-        
     }
 }
 
