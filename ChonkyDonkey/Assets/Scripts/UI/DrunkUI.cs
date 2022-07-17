@@ -9,11 +9,12 @@ public class DrunkUI : MonoBehaviour
     [SerializeField] Slider drunkMeter;
     [SerializeField] Image drunkMeterFill;
     [SerializeField] TMPro.TextMeshProUGUI rollModifierText;
+    [SerializeField] Animation swayAnimation;
 
-    public float oldDrunkPercentage = 0;
-    public float currentDrunkPercentage = 0;
-    public float animationDrunkPercentage = 0;
-    public float lerpInterpolation = 0;
+    private float oldDrunkPercentage = 0;
+    private float currentDrunkPercentage = 0;
+    private float animationDrunkPercentage = 0;
+    private float lerpInterpolation = 0;
     private readonly float animationSpeed = 2.5f;
     private bool isPendingDrinkMeterAnimation;
 
@@ -68,6 +69,8 @@ public class DrunkUI : MonoBehaviour
         animationDrunkPercentage = Mathf.Lerp(oldDrunkPercentage, currentDrunkPercentage, lerpInterpolation);
 
         drunkMeter.value = animationDrunkPercentage;
+
+        swayAnimation.Play();
 
         if (animationDrunkPercentage == currentDrunkPercentage)
         {
