@@ -40,17 +40,21 @@ public class SFXHelper : Singleton<SFXHelper>
 
         mainMenuSqueaky = Resources.Load<AudioClip>(mainMenuSqueakyName);
     }
-
+    
     public static void PlaySound(string clip) {
         switch (clip) {
             case audioClip1Name: // FileName used in Awake
                 //audioSource.PlayOneShot(audioClip1Name);
                 break;
             case mainMenuSqueakyName:
-                _audioSource.PlayOneShot(mainMenuSqueaky);
+                PlaySound(mainMenuSqueaky);
                 break;
             default:
                 break;
         }
+    }
+
+    public static void PlaySound(AudioClip clip) {
+        _audioSource.PlayOneShot(clip);
     }
 }

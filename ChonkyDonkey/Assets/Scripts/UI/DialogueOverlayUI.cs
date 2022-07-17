@@ -48,8 +48,7 @@ public class DialogueOverlayUI : MonoBehaviour
         AudioClip bark = GetSprites(dogId).Bark;
         if (bark != null)
         {
-            BarkSource.clip = bark;
-            BarkSource.Play();
+            SFXHelper.PlaySound(bark);
         }
         OnTalk(dogId, affinity, DogReactionType.Greeting);
     }
