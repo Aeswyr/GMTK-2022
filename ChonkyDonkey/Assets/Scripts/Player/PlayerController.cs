@@ -11,14 +11,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private InteractController interaction;
     [SerializeField] private float speed;
 
-    public bool IsFrozen;
-
     void FixedUpdate()
     {
-        if (IsFrozen) return;
+        if (ModeManager.Instance.Mode != GameMode.Bar) return;
 
-        
-        
         // Movement
         float dir = InputHandler.Instance.dir;
 

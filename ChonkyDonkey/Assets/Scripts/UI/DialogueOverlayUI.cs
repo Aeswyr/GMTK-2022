@@ -33,6 +33,8 @@ public class DialogueOverlayUI : MonoBehaviour
     //Affinity Bar
     private AffinityBar affinityBarScript;
 
+    private PetId prevPet;
+
     private void Awake()
     {
         affinityBarScript = FindObjectOfType<AffinityBar>();
@@ -57,9 +59,10 @@ public class DialogueOverlayUI : MonoBehaviour
 
     private void OnTalk(PetId pet, int affinity, DogReactionType reactionType)
     {
+        ModeManager.Instance.ChangeMode(GameMode.Dialogue);
+        
         // ReSharper disable once Unity.NoNullCoalescing
         cachedPlayer = cachedPlayer ?? FindObjectOfType<PlayerController>();
-        cachedPlayer.IsFrozen = true;
 
         int dogId = (int)pet;
 
@@ -85,6 +88,9 @@ public class DialogueOverlayUI : MonoBehaviour
         // invite and awoo are mutually exclusive by-design
         AwooButton.SetActiveFast(dog.CanAwoo);
         InviteButton.SetActiveFast(!dog.CanAwoo);
+        
+        // store for events
+        prevPet = pet;
     }
 
     private CharacterDialogueSpriteCollection GetSprites(PetId id)
@@ -105,6 +111,8 @@ public class DialogueOverlayUI : MonoBehaviour
 
     private void Update()
     {
+        if (ModeManager.Instance.Mode != GameMode.Dialogue) return;
+        
         bool typewriterDone = Typewriter.GetProgressPercent() >= 1;
         
         // handle interaction
@@ -158,10 +166,12 @@ public class DialogueOverlayUI : MonoBehaviour
                 Controller.SetBool(OptionsShowing, false);
                 break;
             case PlayerActionType.Awoo:
-                Debug.Log("Awoo TODO");
+                Debug.Log("Awoo " + prevPet);
+                affinityBarScript.OnTestRoll(); // TODO
                 break;
             case PlayerActionType.Invite:
-                Debug.Log("Invite TODO");
+                Debug.Log("Invited " + prevPet);
+                ModeManager.Instance.ChangeMode(GameMode.CupDice);
                 break;
         }
         OnHide();
@@ -185,7 +195,10 @@ public class DialogueOverlayUI : MonoBehaviour
     private void OnHide()
     {
         Controller.SetBool(IsShowing, false);
-        cachedPlayer.IsFrozen = false;
         affinityBarScript.HideAffinity();
+        if (ModeManager.Instance.Mode == GameMode.Dialogue)
+        {
+            ModeManager.Instance.ChangeMode(GameMode.Bar);
+        }
     }
 }

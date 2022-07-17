@@ -4,20 +4,22 @@ using UnityEngine;
 
 public class CupStorage : MonoBehaviour
 {
-
+    private bool done;
     void Update()
     {
-        if (Time.timeScale > 0 && (gameObject.transform.childCount == 0 || FlipCupGameStats.diceCount <= 0))
+        if (!done && Time.timeScale > 0 && (gameObject.transform.childCount == 0 || FlipCupGameStats.diceCount <= 0))
         {
+            done = true;
             Debug.Log("Ending game!");
             if (FlipCupGameStats.checkWinCondition())
             {
                 FlipCupGameStats.rewardDice();
             }
             Debug.Log("Thirst Level Gained: " + FlipCupGameStats.thirst);
-            Debug.Log("Dice Spent: " + FlipCupGameStats.spentDice);
-            Debug.Log("Dice Count: " + FlipCupGameStats.diceCount);
-            Time.timeScale = 0f;
+            Debug.Log("CupDice Spent: " + FlipCupGameStats.spentDice);
+            Debug.Log("CupDice Count: " + FlipCupGameStats.diceCount);
+            Time.timeScale = 1f;
+            ModeManager.Instance.ChangeMode(GameMode.Bar);
         }
     }
 }
