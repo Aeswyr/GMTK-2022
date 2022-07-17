@@ -15,6 +15,8 @@ public class FlipCupGameHandler : MonoBehaviour
     public GameObject AwooRollCamera;
     public GameObject AwooRoll;
 
+    public GameObject FlipCupHUD;
+
     private void Start()
     {
         MainCamera.SetActive(true);
@@ -22,6 +24,7 @@ public class FlipCupGameHandler : MonoBehaviour
         Overlay.SetActive(true);
         FlipCupCamera.SetActive(false);
         FlipCup.SetActive(false);
+        FlipCupHUD.SetActiveFast(false);
     }
 
     public void ToggleFlipCup()
@@ -31,6 +34,14 @@ public class FlipCupGameHandler : MonoBehaviour
         Overlay.SetActive(!Overlay.activeInHierarchy);
         FlipCupCamera.SetActive(!FlipCupCamera.activeInHierarchy);
         FlipCup.SetActive(!FlipCup.activeInHierarchy);
+        FlipCupHUD.SetActiveFast(!FlipCupHUD.activeInHierarchy);
+
+        if (FlipCupHUD.activeInHierarchy)
+        {
+            TMPro.TextMeshProUGUI tmText = GameObject.FindWithTag("FlipCupHUD").GetComponent<TMPro.TextMeshProUGUI>();
+            tmText.text = "Click the white dice to begin.\n\nWhen you roll a six, click on a cup to drink! Try and roll the most sixes before your two opponents! The player who drinks the most cups will win more dice!";
+        }
+
         FlipCupGameStats.resetOnNewPlay();
     }
 
