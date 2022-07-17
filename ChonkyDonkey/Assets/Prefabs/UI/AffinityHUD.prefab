@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2511739489454527026}
+  - component: {fileID: 2589591242088483097}
   m_Layer: 0
   m_Name: TakeAllDogsHomeScreen
   m_TagString: TakeAllHomeCanvas
@@ -34,6 +35,26 @@ Transform:
   m_Father: {fileID: 8643274518260400200}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &2589591242088483097
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 190683411580873004}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6c0cc54edf4f7864b9805223eb9cb5ce, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &2078999067115568744
 GameObject:
   m_ObjectHideFlags: 0
@@ -183,7 +204,6 @@ GameObject:
   - component: {fileID: 751827373119838485}
   - component: {fileID: 3702920076667819139}
   - component: {fileID: 3123184430976176767}
-  - component: {fileID: 7083336594522801908}
   m_Layer: 5
   m_Name: ChoiceButton Socialize
   m_TagString: Untagged
@@ -294,26 +314,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!95 &7083336594522801908
-Animator:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2138728143629723691}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: ab4d4cb24ec4a95468fd5bc8e61b9b59, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &2322766557327763445
 GameObject:
   m_ObjectHideFlags: 0
@@ -636,7 +636,6 @@ GameObject:
   - component: {fileID: 7248066470245928365}
   - component: {fileID: 4308049764568744834}
   - component: {fileID: 5000000347449355319}
-  - component: {fileID: 1062893997807891849}
   m_Layer: 5
   m_Name: ChoiceButton Socialize (1)
   m_TagString: Untagged
@@ -747,26 +746,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!95 &1062893997807891849
-Animator:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3762932518681561969}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: ab4d4cb24ec4a95468fd5bc8e61b9b59, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &4210367373177727914
 GameObject:
   m_ObjectHideFlags: 0
@@ -776,6 +755,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4030941180694625356}
+  - component: {fileID: 4214785604545602233}
   m_Layer: 0
   m_Name: TakeOneDogHomeScreen
   m_TagString: TakeOneHomeCanvas
@@ -801,6 +781,26 @@ Transform:
   m_Father: {fileID: 8643274518260400200}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &4214785604545602233
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4210367373177727914}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ab4d4cb24ec4a95468fd5bc8e61b9b59, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &6567686991932386525
 GameObject:
   m_ObjectHideFlags: 0
@@ -813,7 +813,6 @@ GameObject:
   - component: {fileID: 8044162696945099255}
   - component: {fileID: 3170313851817913493}
   - component: {fileID: 5699385624164457162}
-  - component: {fileID: 3698118947007380020}
   m_Layer: 5
   m_Name: ChoiceButton TakeHome
   m_TagString: Untagged
@@ -924,26 +923,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!95 &3698118947007380020
-Animator:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6567686991932386525}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: ab4d4cb24ec4a95468fd5bc8e61b9b59, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &6599954016817461398
 GameObject:
   m_ObjectHideFlags: 0
@@ -1228,7 +1207,6 @@ GameObject:
   - component: {fileID: 3129259404294793168}
   - component: {fileID: 7761281400821652818}
   - component: {fileID: 6960319984224045505}
-  - component: {fileID: 7546520129305576863}
   m_Layer: 5
   m_Name: ChoiceButton TakeHome (1)
   m_TagString: Untagged
@@ -1339,26 +1317,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!95 &7546520129305576863
-Animator:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8580985498599115013}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: ab4d4cb24ec4a95468fd5bc8e61b9b59, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &8702995924027966905
 GameObject:
   m_ObjectHideFlags: 0
