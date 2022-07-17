@@ -6,6 +6,7 @@ TagManager:
   tags:
   - TakeAllHomeCanvas
   - TakeOneHomeCanvas
+  - FlipCupHUD
   layers:
   - Default
   - TransparentFX
