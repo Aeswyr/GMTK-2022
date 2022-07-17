@@ -12,8 +12,8 @@ public class SFXHelper : MonoBehaviour
 {
     // Examples
     private static AudioClip audioClip1, audioClip2;
-    private const string audioClip1Name = "DiceRollSound"; // FileName
-    private const string audioClip2Name = ""; // FileName
+    public const string audioClip1Name = "DiceRollSound"; // FileName
+    public const string audioClip2Name = ""; // FileName
 
     private static AudioSource _audioSource;
 

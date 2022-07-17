@@ -4,15 +4,14 @@ using UnityEngine;
 
 public class CupStorage : MonoBehaviour
 {
-    public static Queue<int> cups;
- 
-    void Awake()
-    {
-        cups = new Queue<int>(new[] {1, 2, 3, 4});
-    }
 
     void Update()
     {
-        
+        if (gameObject.transform.childCount == 0)
+        {
+            Debug.Log("Ending game!");
+            Time.timeScale = 0f;
+            // SceneManager.LoadScene(); // load main scene
+        }
     }
 }
