@@ -85,22 +85,27 @@ public class DialogueOverlayUI : MonoBehaviour
                 return;
             }
 
+            // interact is contextual
             if (InputHandler.Instance.interact.pressed)
             {
+                // show options
                 if (typewriterDone)
                 {
-                    Controller.SetBool(OptionsShowing, true);
+                    Controller.SetBool( OptionsShowing, true);
                 }
+                // skip
                 else
                 {
                     typewriterDone = true;
+                    Typewriter.Finish();
                 }
             }
         }
 
-        if (NextArrow.activeSelf != typewriterDone)
+        bool shouldShowNextArrow = !Controller.GetBool(OptionsShowing) && typewriterDone;
+        if (NextArrow.activeSelf != shouldShowNextArrow)
         {
-            NextArrow.SetActiveFast(typewriterDone);
+            NextArrow.SetActiveFast(shouldShowNextArrow);
             NextArrow.GetComponent<Animation>()?.Play();
         }
     }
