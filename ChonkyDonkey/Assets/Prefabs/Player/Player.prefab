@@ -164,7 +164,7 @@ Animator:
   m_GameObject: {fileID: 763738330212004941}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d3c517fdaf12a8444a062f7d68ac1e6a, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -225,8 +225,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rbody: {fileID: 1383102197773758058}
   sprite: {fileID: 8403571101949549118}
+  animator: {fileID: 5965584728173044893}
   interaction: {fileID: 7384115422989440597}
   speed: 4
+  IsFrozen: 0
 --- !u!1 &6473278724632339546
 GameObject:
   m_ObjectHideFlags: 0
