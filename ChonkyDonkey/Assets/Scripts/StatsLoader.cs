@@ -5,6 +5,27 @@ using UnityEngine;
 
 public static class StatsLoader
 {
+    public const int
+        ID = 0,
+        Name = 1,
+        CanAwoo = 2,
+        Greeting0 = 3,
+        Good0 = 4,
+        Bad0 = 5,
+        Greeting10 = 3,
+        Good10 = 4,
+        Bad10 = 5,
+        Greeting20 = 3,
+        Good20 = 4,
+        Bad20 = 5,
+        Greeting30 = 3,
+        Good30 = 4,
+        Bad30 = 5,
+        Greeting40 = 3,
+        Good40 = 4,
+        Bad40 = 5;
+    
+    
     public static DogStatsBlock[] Stats { get; private set; }
 
     public static DogStatsBlock Get(int dogId)
@@ -44,7 +65,7 @@ public static class StatsLoader
         string[] rows = statsString.Split('\n');
         for (var i = 0; i < rows.Length; i++)
         {
-            string[] values = rows[i].Split(',');
+            string[] values = rows[i].Split('\t');
             
             // header row
             if (values[0] == "ID")
@@ -54,19 +75,20 @@ public static class StatsLoader
 
             var newBlock = new DogStatsBlock()
             {
-                ID = int.Parse(values[0]),
-                DisplayName = values[1],
+                ID = int.Parse(values[ID]),
+                DisplayName = values[Name],
+                CanAwoo = string.Compare(values[CanAwoo],  "TRUE", StringComparison.OrdinalIgnoreCase) == 0,
                 Greetings = new string[]
                 {
-                    values[2], values[5], values[8], values[11], values[14]
+                    values[Greeting0], values[Greeting10], values[Greeting20], values[Greeting30], values[Greeting40]
                 },
                 GoodAnswer = new string[]
                 {
-                    values[3], values[6], values[9], values[12], values[15]
+                    values[Good0], values[Good10], values[Good20], values[Good30], values[Good40]
                 },
                 BadAnswer = new string[]
                 {
-                    values[4], values[7], values[10], values[13], values[16]
+                    values[Bad0], values[Bad10], values[Bad20], values[Bad30], values[Bad40]
                 }
             };
             statsCollector.Add(newBlock);
@@ -88,6 +110,7 @@ public struct DogStatsBlock
 {
     public int ID;
     public string DisplayName;
+    public bool CanAwoo;
     public string[] Greetings;
     public string[] GoodAnswer;
     public string[] BadAnswer;

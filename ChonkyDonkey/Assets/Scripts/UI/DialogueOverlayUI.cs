@@ -15,11 +15,28 @@ public class DialogueOverlayUI : MonoBehaviour
     [Header("Assets")]
     public CharacterDialogueSpriteCollection[] CharacterSprites;
 
+    [Header("Config")] 
+    public float TypewriterSpeed;
+    public float TypewriterDelay;
+    
+    // apparently, the new input system's "pressed" doesn't work like the old one, so tracking the pressed state here
+    private bool inputFlag;
+
     private PlayerController cachedPlayer;
 
     // animator triggers
     private static readonly int IsShowing = Animator.StringToHash("IsShowing");
     private static readonly int CharacterChanged = Animator.StringToHash("CharacterChanged");
+    private static readonly int OptionsShowing = Animator.StringToHash("OptionsShowing");
+
+    //Affinity Bar
+    private AffinityBar affinityBarScript;
+
+    private void Awake()
+    {
+        affinityBarScript = FindObjectOfType<AffinityBar>();
+    }
+
 
     public void OnGreetDog(int dogId, int affinity)
     {
@@ -57,7 +74,7 @@ public class DialogueOverlayUI : MonoBehaviour
         NameLabel.text = dog.DisplayName;
 
         // start the typewriter
-        Typewriter.PlayTypewriter(dog.GetLine(reactionType, affinity), 10, delay: 1f);
+        Typewriter.PlayTypewriter(dog.GetLine(reactionType, affinity), TypewriterSpeed, delay: TypewriterDelay);
     }
 
     private void Update()
@@ -74,33 +91,75 @@ public class DialogueOverlayUI : MonoBehaviour
                 return;
             }
 
-            if (InputHandler.Instance.interact.pressed)
+            // interact is contextual
+            if (InputHandler.Instance.interact.pressed && !inputFlag)
             {
-                if (!typewriterDone) Typewriter.Finish();
-                typewriterDone = true;
+                // show options
+                if (typewriterDone)
+                {
+                    Controller.SetBool( OptionsShowing, true);
+                }
+                // skip
+                else
+                {
+                    typewriterDone = true;
+                    Typewriter.Finish();
+                }
+
+                inputFlag = true;
+            }
+
+            if (InputHandler.Instance.interact.released)
+            {
+                inputFlag = false;
             }
         }
 
-        if (NextArrow.activeSelf != typewriterDone)
+        bool shouldShowNextArrow = !Controller.GetBool(OptionsShowing) && typewriterDone;
+        if (NextArrow.activeSelf != shouldShowNextArrow)
         {
-            NextArrow.SetActiveFast(typewriterDone);
+            NextArrow.SetActiveFast(shouldShowNextArrow);
             NextArrow.GetComponent<Animation>()?.Play();
         }
     }
 
     public void OnChoice(PlayerActionType actionType)
     {
+        Controller.SetBool(OptionsShowing, false);
         switch (actionType)
         {
             case PlayerActionType.Leave:
-                OnHide();
+                Controller.SetBool(OptionsShowing, false);
+                break;
+            case PlayerActionType.Awoo:
+                Debug.Log("Awoo TODO");
+                break;
+            case PlayerActionType.Invite:
+                Debug.Log("Invite TODO");
                 break;
         }
+        OnHide();
+    }
+
+    public void OnAwooPressed()
+    {
+        OnChoice(PlayerActionType.Awoo);
+    }
+
+    public void OnInvitePressed()
+    {
+        OnChoice(PlayerActionType.Invite);
+    }
+    
+    public void OnLeavePressed()
+    {
+        OnChoice(PlayerActionType.Invite);
     }
 
     private void OnHide()
     {
         Controller.SetBool(IsShowing, false);
         cachedPlayer.IsFrozen = false;
+        affinityBarScript.HideAffinity();
     }
 }
