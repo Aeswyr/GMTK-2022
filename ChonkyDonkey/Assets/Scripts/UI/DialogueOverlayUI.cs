@@ -44,7 +44,7 @@ public class DialogueOverlayUI : MonoBehaviour
 
     public void OnGreetDog(PetId dogId)
     {
-        int affinity = 0; // TODO get affinity
+        int affinity = affinityBarScript.ShowThisDogsAffinity((int)dogId);
         AudioClip bark = GetSprites(dogId).Bark;
         if (bark != null)
         {
