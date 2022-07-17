@@ -12,6 +12,9 @@ public class FlipCupGameHandler : MonoBehaviour
     public GameObject FlipCup;
     public GameObject Cups;
 
+    public GameObject AwooRollCamera;
+    public GameObject AwooRoll;
+
     private void Start()
     {
         MainCamera.SetActive(true);
@@ -29,5 +32,14 @@ public class FlipCupGameHandler : MonoBehaviour
         FlipCupCamera.SetActive(!FlipCupCamera.activeInHierarchy);
         FlipCup.SetActive(!FlipCup.activeInHierarchy);
         FlipCupGameStats.resetOnNewPlay();
+    }
+
+    public void ToggleAwooRoll()
+    {
+        MainCamera.SetActive(!MainCamera.activeInHierarchy);
+        //HUD.SetActive(!HUD.activeInHierarchy);
+        Overlay.SetActive(!Overlay.activeInHierarchy);
+        AwooRollCamera.SetActive(!AwooRollCamera.activeInHierarchy);
+        AwooRoll.SetActive(!AwooRoll.activeInHierarchy);
     }
 }

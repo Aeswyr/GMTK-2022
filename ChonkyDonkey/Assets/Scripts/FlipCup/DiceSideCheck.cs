@@ -8,12 +8,19 @@ public class DiceSideCheck : MonoBehaviour
     public static int npc1Roll = 0;
     public static int npc2Roll = 0;
 
+    public GameObject affinityBar;
+
     void FixedUpdate()
     {
         if (!FlipCupGameStats.canDrink)
         {
             enableCollider(true);
         }
+    }
+
+    public int PlayerRoll()
+    {
+        return playerRoll;
     }
 
     void OnTriggerStay(Collider col)
@@ -34,6 +41,27 @@ public class DiceSideCheck : MonoBehaviour
                 case "NPC2Side1":
                     npc2Roll = 6;
                     break;
+                case "Side2":
+                    playerRoll = 5;
+                    break;
+                case "Side3":
+                    playerRoll = 4;
+                    break;
+                case "Side4":
+                    playerRoll = 3;
+                    break;
+                case "Side5":
+                    playerRoll = 2;
+                    break;
+                case "Side6":
+                    playerRoll = 1;
+                    break;
+            }
+            if (ModeManager.Instance.Mode == GameMode.AwooDice && AffinityBar.rolledDice)
+            {
+                AffinityBar bar = affinityBar.GetComponent<AffinityBar>();
+                bar.UpdateAffinityAfterRoll(bar.GetDogTag());
+
             }
             if (name == "Side1")
             {
