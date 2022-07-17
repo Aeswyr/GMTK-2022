@@ -8,6 +8,7 @@ public struct CharacterDialogueSpriteCollection
     public Sprite Default;
     public Sprite Happy;
     public Sprite Angry;
+    public AudioClip Bark;
 
     public Sprite Get(DogReactionType reactionType)
     {

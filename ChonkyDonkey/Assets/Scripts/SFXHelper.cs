@@ -17,7 +17,7 @@ public class SFXHelper : Singleton<SFXHelper>
     private static AudioClip mainMenuSqueaky;
     public const string mainMenuSqueakyName = "Sound/MainMenuSqueakyToy";
 
-    private static AudioSource _audioSource;
+    private static AudioSource _audioSource;    
 
     public float Volume 
     {
@@ -40,17 +40,23 @@ public class SFXHelper : Singleton<SFXHelper>
 
         mainMenuSqueaky = Resources.Load<AudioClip>(mainMenuSqueakyName);
     }
-
+    
     public static void PlaySound(string clip) {
         switch (clip) {
             case audioClip1Name: // FileName used in Awake
                 //audioSource.PlayOneShot(audioClip1Name);
                 break;
             case mainMenuSqueakyName:
-                _audioSource.PlayOneShot(mainMenuSqueaky);
+                PlaySound(mainMenuSqueaky);
                 break;
             default:
                 break;
         }
+    }
+
+    public static void PlaySound(AudioClip clip)
+    {
+        if (_audioSource == null) return;
+        _audioSource.PlayOneShot(clip);
     }
 }

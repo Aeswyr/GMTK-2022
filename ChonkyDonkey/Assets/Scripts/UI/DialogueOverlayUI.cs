@@ -12,6 +12,7 @@ public class DialogueOverlayUI : MonoBehaviour
     public GameObject NextArrow;
     public GameObject AwooButton;
     public GameObject InviteButton;
+    public AudioSource BarkSource;
     
     [Header("Assets")]
     public CharacterDialogueSpriteCollection[] CharacterSprites;
@@ -43,7 +44,12 @@ public class DialogueOverlayUI : MonoBehaviour
 
     public void OnGreetDog(PetId dogId)
     {
-        int affinity = 0; // TODO get affinity
+        int affinity = affinityBarScript.ShowThisDogsAffinity((int)dogId);
+        AudioClip bark = GetSprites(dogId).Bark;
+        if (bark != null)
+        {
+            SFXHelper.PlaySound(bark);
+        }
         OnTalk(dogId, affinity, DogReactionType.Greeting);
     }
     
@@ -163,11 +169,12 @@ public class DialogueOverlayUI : MonoBehaviour
         switch (actionType)
         {
             case PlayerActionType.Leave:
+                affinityBarScript.HideAffinity();
                 Controller.SetBool(OptionsShowing, false);
                 break;
             case PlayerActionType.Awoo:
                 Debug.Log("Awoo " + prevPet);
-                affinityBarScript.OnTestRoll(); // TODO
+                ModeManager.Instance.ChangeMode(GameMode.AwooDice);
                 break;
             case PlayerActionType.Invite:
                 Debug.Log("Invited " + prevPet);
@@ -195,7 +202,7 @@ public class DialogueOverlayUI : MonoBehaviour
     private void OnHide()
     {
         Controller.SetBool(IsShowing, false);
-        affinityBarScript.HideAffinity();
+        
         if (ModeManager.Instance.Mode == GameMode.Dialogue)
         {
             ModeManager.Instance.ChangeMode(GameMode.Bar);
