@@ -12,6 +12,7 @@ public class DialogueOverlayUI : MonoBehaviour
     public GameObject NextArrow;
     public GameObject AwooButton;
     public GameObject InviteButton;
+    public AudioSource BarkSource;
     
     [Header("Assets")]
     public CharacterDialogueSpriteCollection[] CharacterSprites;
@@ -44,6 +45,12 @@ public class DialogueOverlayUI : MonoBehaviour
     public void OnGreetDog(PetId dogId)
     {
         int affinity = 0; // TODO get affinity
+        AudioClip bark = GetSprites(dogId).Bark;
+        if (bark != null)
+        {
+            BarkSource.clip = bark;
+            BarkSource.Play();
+        }
         OnTalk(dogId, affinity, DogReactionType.Greeting);
     }
     
