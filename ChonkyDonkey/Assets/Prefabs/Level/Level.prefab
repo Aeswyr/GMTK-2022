@@ -5255,6 +5255,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4353343719168191842}
     m_Modifications:
+    - target: {fileID: -2227109061819868581, guid: 50fb482ed7e08cb41869d5658b66836d, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 346351374824439323, guid: 50fb482ed7e08cb41869d5658b66836d, type: 3}
       propertyPath: m_Name
       value: Barrel (3)
