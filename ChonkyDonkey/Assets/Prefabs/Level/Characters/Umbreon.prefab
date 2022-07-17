@@ -129,11 +129,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 433515855515008697, guid: cf602f4b95752d84595bf5d0e5a0ca60, type: 3}
       propertyPath: m_Size.x
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 433515855515008697, guid: cf602f4b95752d84595bf5d0e5a0ca60, type: 3}
       propertyPath: m_Size.y
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2264601425030158020, guid: cf602f4b95752d84595bf5d0e5a0ca60, type: 3}
       propertyPath: m_Name
