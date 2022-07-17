@@ -918,9 +918,9 @@ MonoBehaviour:
     Happy: {fileID: 21300000, guid: b169af7c1367b440d9f9a6c379375d46, type: 3}
     Angry: {fileID: 21300000, guid: b169af7c1367b440d9f9a6c379375d46, type: 3}
   - Character: 3
-    Default: {fileID: 21300000, guid: 0d07bf73ce1d34cc2b44d3d6ab0fd939, type: 3}
-    Happy: {fileID: 21300000, guid: c3fb3fe0a36aa4e0c96952bb9999370e, type: 3}
-    Angry: {fileID: 21300000, guid: b58905efa182c478598505aed339c6cc, type: 3}
+    Default: {fileID: 21300000, guid: bac7885e7989b405b97e89d6e2ae5b5e, type: 3}
+    Happy: {fileID: 21300000, guid: bac7885e7989b405b97e89d6e2ae5b5e, type: 3}
+    Angry: {fileID: 21300000, guid: bac7885e7989b405b97e89d6e2ae5b5e, type: 3}
   - Character: 4
     Default: {fileID: 21300000, guid: 13400e9e3872342588b3a8797f6dcc3e, type: 3}
     Happy: {fileID: 21300000, guid: 13400e9e3872342588b3a8797f6dcc3e, type: 3}
