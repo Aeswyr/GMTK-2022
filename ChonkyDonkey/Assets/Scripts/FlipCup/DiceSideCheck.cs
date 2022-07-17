@@ -39,7 +39,6 @@ public class DiceSideCheck : MonoBehaviour
             {
                 if (FlipCupGameStats.rolledPlayerDice && playerRoll == 6)
                 {
-                    RollDice.changeColor(Color.red);
                     FlipCupGameStats.canDrink = true;
                     enableCollider(false);
                 }

@@ -4,15 +4,38 @@ using UnityEngine;
 
 public class FlipCupGameHandler : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public GameObject MainCamera;
+    public GameObject HUD;
+    public GameObject Overlay;
+
+    public GameObject FlipCupCamera;
+    public GameObject FlipCup;
+    public GameObject Cups;
+
+    private void Start()
     {
-        
+        MainCamera.SetActive(true);
+        HUD.SetActive(true);
+        Overlay.SetActive(true);
+        FlipCupCamera.SetActive(false);
+        FlipCup.SetActive(false);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void FixedUpdate()
     {
-        
+        if (InputHandler.Instance.move.down)
+        {
+            ToggleFlipCup();
+        }
+    }
+
+    public void ToggleFlipCup()
+    {
+        MainCamera.SetActive(!MainCamera.activeInHierarchy);
+        HUD.SetActive(!HUD.activeInHierarchy);
+        Overlay.SetActive(!Overlay.activeInHierarchy);
+        FlipCupCamera.SetActive(!FlipCupCamera.activeInHierarchy);
+        FlipCup.SetActive(!FlipCup.activeInHierarchy);
+        FlipCupGameStats.resetOnNewPlay();
     }
 }

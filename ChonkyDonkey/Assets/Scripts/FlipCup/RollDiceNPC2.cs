@@ -8,12 +8,10 @@ public class RollDiceNPC2 : MonoBehaviour
     public static int roll = 0;
 
     private static Rigidbody rb;
-    private static MeshRenderer diceRenderer;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        diceRenderer = GetComponent<MeshRenderer>();
 
         InvokeRepeating("rollDice", 0, 7);
     }
@@ -21,16 +19,10 @@ public class RollDiceNPC2 : MonoBehaviour
     public static void drinkRandomCup(string name)
     {
         setFlag(name, false);
-        changeColor(Color.red);
         GameObject allCups = GameObject.Find("Cups");
         int random = Random.Range(0, allCups.transform.childCount);
 
         Destroy(allCups.transform.GetChild(random).gameObject);
-    }
-
-    public static void changeColor(Color color)
-    {
-        diceRenderer.material.color = color;
     }
 
     private static void setFlag(string name, bool status)
@@ -48,12 +40,11 @@ public class RollDiceNPC2 : MonoBehaviour
     private void rollDice()
     {
         setFlag(gameObject.name, true);
-        changeColor(Color.yellow);
-        float dirX = Random.Range(0, 200);
-        float dirY = Random.Range(0, 200);
-        float dirZ = Random.Range(0, 200);
-        transform.position = transform.parent.position + new Vector3(0, 2f, -4f);
-        transform.rotation = Quaternion.identity;
+        float dirX = Random.Range(50, 200);
+        float dirY = Random.Range(50, 200);
+        float dirZ = Random.Range(50, 200);
+        transform.position = transform.parent.position + new Vector3(2.5f, 87f, 10f) + new Vector3(0, 5f, 0);
+        transform.rotation = new Quaternion(-29f, 45f, -110f, 0f);
         rb.AddForce(transform.up * 500);
         rb.AddTorque(dirX, dirY, dirZ);
     }
