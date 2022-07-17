@@ -11,6 +11,8 @@ public class DialogueOverlayUI : MonoBehaviour
     public TextMeshProUGUI NameLabel;
     public TypewriterText Typewriter;
     public GameObject NextArrow;
+    public GameObject AwooButton;
+    public GameObject InviteButton;
     
     [Header("Assets")]
     public CharacterDialogueSpriteCollection[] CharacterSprites;
@@ -38,8 +40,9 @@ public class DialogueOverlayUI : MonoBehaviour
     }
 
 
-    public void OnGreetDog(int dogId, int affinity)
+    public void OnGreetDog(int dogId)
     {
+        int affinity = 0; // TODO get affinity
         OnTalk(dogId, affinity, DogReactionType.Greeting);
     }
     
@@ -75,6 +78,12 @@ public class DialogueOverlayUI : MonoBehaviour
 
         // start the typewriter
         Typewriter.PlayTypewriter(dog.GetLine(reactionType, affinity), TypewriterSpeed, delay: TypewriterDelay);
+        
+        // show the appropriate buttons
+        // note: will not be visible yet
+        // invite and awoo are mutually exclusive by-design
+        AwooButton.SetActiveFast(dog.CanAwoo);
+        InviteButton.SetActiveFast(!dog.CanAwoo);
     }
 
     private void Update()

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = System.Random;
 
 public static class StatsLoader
 {
@@ -122,6 +123,13 @@ public struct DogStatsBlock
 
     public string GetLine(DogReactionType reactionType, int affinity)
     {
+        // different behavior for non romantic characters, use random line
+        if (!CanAwoo)
+        {
+            
+            return "";
+        }
+        
         int index = DogHelper.GetAffinityIndex(affinity);
         string[] category;
         switch (reactionType)
