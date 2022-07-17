@@ -13,14 +13,18 @@ public class InteractController : MonoBehaviour
         filter.layerMask = LayerMask.GetMask("Interactable");
     }
     void OnTriggerEnter2D(Collider2D other) {
+        if (other.gameObject.layer != LayerMask.NameToLayer("Interactable"))
+            return;
         interactEmote.SetActive(true);
     }
 
     void OnTriggerExit2D(Collider2D other) {
+        if (other.gameObject.layer != LayerMask.NameToLayer("Interactable"))
+            return;
         List<RaycastHit2D> hits = new List<RaycastHit2D>();
         interactBox.Cast(Vector2.zero, filter, hits);
 
-        if (hits.Count == 0)
+        if (hits.Count == 1)
             interactEmote.SetActive(false);
     }
 
