@@ -32,4 +32,19 @@ public class FlipCupGameStats : MonoBehaviour
     {
         diceCount += (spentDice + (spentDice / 2));
     }
+
+    public static void resetOnNewPlay()
+    {
+        thirst = 0;
+        spentDice = 0;
+
+        canDrink = false;
+        rolledPlayerDice = false;
+        rolledNPC1Dice = false;
+        rolledNPC2Dice = false;
+
+        playerSixCount = 0;
+        NPC1SixCount = 0;
+        NPC2SixCount = 0;
+    }
 }

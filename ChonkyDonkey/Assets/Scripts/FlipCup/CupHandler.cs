@@ -16,7 +16,6 @@ public class CupHandler : MonoBehaviour, IPointerClickHandler
             FlipCupGameStats.playerSixCount += 1;
             FlipCupGameStats.canDrink = false;
             FlipCupGameStats.rolledPlayerDice = false;
-            RollDice.changeColor(Color.blue);
             Destroy(gameObject);
         }
     }

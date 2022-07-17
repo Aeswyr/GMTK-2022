@@ -28,20 +28,15 @@ public class RollDice : MonoBehaviour
         } 
     }
 
-    public static void changeColor(Color color)
-    {
-        diceRenderer.material.color = color;
-    }
-
     private void rollDice()
     {
         FlipCupGameStats.spendDice();
-        float dirX = Random.Range(50, 300);
+        float dirX = Random.Range(100, 300);
         float dirY = Random.Range(50, 300);
-        float dirZ = Random.Range(50, 300);
+        float dirZ = Random.Range(100, 300);
         transform.position = initialPosition;
         transform.rotation = Quaternion.identity;
-        rb.AddForce(transform.up * 100);
+        rb.AddForce(transform.up * 300);
         rb.AddTorque(dirX, dirY, dirZ);
     }
 }
