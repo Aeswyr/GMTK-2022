@@ -4443,7 +4443,7 @@ MonoBehaviour:
   Cups: {fileID: 1568509862}
   AwooRollCamera: {fileID: 0}
   AwooRoll: {fileID: 0}
-  FlipCupHUD: {fileID: 0}
+  FlipCupHUD: {fileID: 1159177237}
 --- !u!4 &3079297968146496039
 Transform:
   m_ObjectHideFlags: 0
