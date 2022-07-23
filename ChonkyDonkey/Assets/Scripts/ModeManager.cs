@@ -12,7 +12,8 @@ public class ModeManager : Singleton<ModeManager>
 
     public void ChangeMode(GameMode newMode)
     {
-        if (Mode != newMode && (Mode == GameMode.CupDice || newMode == GameMode.CupDice)) FlipCup.ToggleFlipCup();
+        if (Mode != newMode && (Mode == GameMode.CupDice || newMode == GameMode.CupDice)) 
+            FlipCup.ToggleFlipCup();
         if (Mode != newMode && (Mode == GameMode.AwooDice || newMode == GameMode.AwooDice))
             Awoo.ToggleAwooRoll();
         BarCam.gameObject.SetActive(newMode == GameMode.Bar || newMode == GameMode.Dialogue);

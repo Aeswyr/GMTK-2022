@@ -17,7 +17,10 @@ public class SFXHelper : Singleton<SFXHelper>
     private static AudioClip mainMenuSqueaky;
     public const string mainMenuSqueakyName = "Sound/MainMenuSqueakyToy";
 
-    private static AudioSource _audioSource;    
+    private static AudioSource _audioSource; 
+    
+    [SerializeField] private AudioClip music;
+    [SerializeField] private AudioSource musicPlayer;
 
     public float Volume 
     {
@@ -39,6 +42,10 @@ public class SFXHelper : Singleton<SFXHelper>
         //audioClipName = Resources.Load<AudioClip>(audioClip1Name);
 
         mainMenuSqueaky = Resources.Load<AudioClip>(mainMenuSqueakyName);
+        
+        musicPlayer.clip = music;
+        musicPlayer.loop = true;
+        musicPlayer.Play();
     }
     
     public static void PlaySound(string clip) {

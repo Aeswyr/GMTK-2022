@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class FlipCupGameHandler : MonoBehaviour
 {
-    public GameObject MainCamera;
     public GameObject HUD;
     public GameObject Overlay;
 
@@ -19,9 +18,8 @@ public class FlipCupGameHandler : MonoBehaviour
 
     private void Start()
     {
-        MainCamera.SetActive(true);
         HUD.SetActive(true);
-        Overlay.SetActive(true);
+        //Overlay.SetActive(true);
         FlipCupCamera.SetActive(false);
         FlipCup.SetActive(false);
         FlipCupHUD.SetActiveFast(false);
@@ -29,9 +27,8 @@ public class FlipCupGameHandler : MonoBehaviour
 
     public void ToggleFlipCup()
     {
-        MainCamera.SetActive(!MainCamera.activeInHierarchy);
         HUD.SetActive(!HUD.activeInHierarchy);
-        Overlay.SetActive(!Overlay.activeInHierarchy);
+        //Overlay.SetActive(!Overlay.activeInHierarchy);
         FlipCupCamera.SetActive(!FlipCupCamera.activeInHierarchy);
         FlipCup.SetActive(!FlipCup.activeInHierarchy);
         FlipCupHUD.SetActiveFast(!FlipCupHUD.activeInHierarchy);
@@ -47,9 +44,8 @@ public class FlipCupGameHandler : MonoBehaviour
 
     public void ToggleAwooRoll()
     {
-        MainCamera.SetActive(!MainCamera.activeInHierarchy);
         //HUD.SetActive(!HUD.activeInHierarchy);
-        Overlay.SetActive(!Overlay.activeInHierarchy);
+        //Overlay.SetActive(!Overlay.activeInHierarchy);
         AwooRollCamera.SetActive(!AwooRollCamera.activeInHierarchy);
         AwooRoll.SetActive(!AwooRoll.activeInHierarchy);
     }

@@ -30,11 +30,6 @@ public class CupStorage : MonoBehaviour
         
         ModeManager.Instance.ChangeMode(GameMode.Bar);
         
-        if (!handler.MainCamera.activeSelf)
-        {
-            //handler.ToggleFlipCup();
-        }
-
         if (FlipCupGameStats.diceCount < 0)
         {
             // END THE GAME LOSE CONDITION

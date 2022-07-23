@@ -29,7 +29,7 @@ public class DrunkUI : MonoBehaviour
         drunkeness.DrunkenessChanged += OnDrunkenessChanged;
     }
 
-    public void OnDrunkenessChanged()
+    public void OnDrunkenessChanged(int delta)
     {
         oldDrunkPercentage = currentDrunkPercentage;
         currentDrunkPercentage = drunkeness.GetDrunkenessPercentage();
@@ -37,6 +37,8 @@ public class DrunkUI : MonoBehaviour
         isPendingDrinkMeterAnimation = true;
         animationDrunkPercentage = 0;
         lerpInterpolation = 0;
+        
+        FXOverlayUI.Instance.OnDrunkChanged(delta);
     }
 
     private string GetRollModifierString()

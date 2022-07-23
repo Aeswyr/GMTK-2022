@@ -15,7 +15,7 @@ public class Drunkeness : MonoBehaviour
     private readonly Color buzzedColor = Color.green; 
     private readonly Color wastedColor = Color.red;
 
-    public delegate void Notify();
+    public delegate void Notify(int delta);
     public event Notify DrunkenessChanged;
 
     void Awake()
@@ -34,7 +34,7 @@ public class Drunkeness : MonoBehaviour
         if(currentIndex < maxIndex)
         {
             currentIndex += drinkValue;
-            DrunkenessChanged?.Invoke();
+            DrunkenessChanged?.Invoke(drinkValue);
         }
     }
 
@@ -43,7 +43,7 @@ public class Drunkeness : MonoBehaviour
         if (currentIndex > 0)
         {
             currentIndex -= value;
-            DrunkenessChanged?.Invoke();
+            DrunkenessChanged?.Invoke(-value);
         }
     }
 

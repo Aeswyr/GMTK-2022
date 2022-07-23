@@ -13,6 +13,7 @@ public class DialogueOverlayUI : MonoBehaviour
     public GameObject AwooButton;
     public GameObject InviteButton;
     public AudioSource BarkSource;
+    public bool PrintDebug;
     
     [Header("Assets")]
     public CharacterDialogueSpriteCollection[] CharacterSprites;
@@ -22,7 +23,8 @@ public class DialogueOverlayUI : MonoBehaviour
     public float TypewriterDelay;
     
     // apparently, the new input system's "pressed" doesn't work like the old one, so tracking the pressed state here
-    private bool inputFlag;
+    private float inputCooldown;
+    private const float InputInterval = 0.2f;
 
     private PlayerController cachedPlayer;
 
@@ -35,15 +37,21 @@ public class DialogueOverlayUI : MonoBehaviour
     private AffinityBar affinityBarScript;
 
     private PetId prevPet;
+    private DogReactionType prevReaction;
 
     private void Awake()
     {
         affinityBarScript = FindObjectOfType<AffinityBar>();
     }
 
+    public void Dbg(string log)
+    {
+        if (PrintDebug) Debug.Log(log);
+    }
 
     public void OnGreetDog(PetId dogId)
     {
+        Dbg("OnGreetDog " + dogId);
         int affinity = affinityBarScript.ShowThisDogsAffinity((int)dogId);
         AudioClip bark = GetSprites(dogId).Bark;
         if (bark != null)
@@ -55,17 +63,27 @@ public class DialogueOverlayUI : MonoBehaviour
     
     public void OnSuccess(PetId dogId, int affinity)
     {
+        Dbg("OnSuccess " + dogId);
+        affinityBarScript.ShowThisDogsAffinity((int)dogId);
         OnTalk(dogId, affinity, DogReactionType.Happy);
     }
     
     public void OnFail(PetId dogId, int affinity)
     {
+        Dbg("OnFail " + dogId);
+        affinityBarScript.ShowThisDogsAffinity((int)dogId);
         OnTalk(dogId, affinity, DogReactionType.Angry);
     }
 
     private void OnTalk(PetId pet, int affinity, DogReactionType reactionType)
     {
-        ModeManager.Instance.ChangeMode(GameMode.Dialogue);
+        Dbg("OnTalk " + pet);
+        if (inputCooldown > 0) return;
+        Dbg("OnTalk condition passed");
+        if (ModeManager.Instance.Mode != GameMode.Dialogue)
+            ModeManager.Instance.ChangeMode(GameMode.Dialogue);
+
+        prevReaction = reactionType;
         
         // ReSharper disable once Unity.NoNullCoalescing
         cachedPlayer = cachedPlayer ?? FindObjectOfType<PlayerController>();
@@ -77,6 +95,7 @@ public class DialogueOverlayUI : MonoBehaviour
 
         // play the show animation
         Controller.SetBool(IsShowing, true);
+        Dbg("IsShowing true");
 
         // set the character sprite
         CharacterIcon.sprite = GetSprites(pet).Get(reactionType);
@@ -117,6 +136,7 @@ public class DialogueOverlayUI : MonoBehaviour
 
     private void Update()
     {
+        inputCooldown -= Time.deltaTime;
         if (ModeManager.Instance.Mode != GameMode.Dialogue) return;
         
         bool typewriterDone = Typewriter.GetProgressPercent() >= 1;
@@ -132,12 +152,15 @@ public class DialogueOverlayUI : MonoBehaviour
             }
 
             // interact is contextual
-            if (InputHandler.Instance.interact.pressed && !inputFlag)
+            if (InputHandler.Instance.interact.pressed && inputCooldown < 0)
             {
                 // show options
                 if (typewriterDone)
                 {
-                    Controller.SetBool( OptionsShowing, true);
+                    if (prevReaction == DogReactionType.Greeting)
+                        Controller.SetBool( OptionsShowing, true);
+                    else
+                        OnChoice(PlayerActionType.Leave);
                 }
                 // skip
                 else
@@ -146,12 +169,7 @@ public class DialogueOverlayUI : MonoBehaviour
                     Typewriter.Finish();
                 }
 
-                inputFlag = true;
-            }
-
-            if (InputHandler.Instance.interact.released)
-            {
-                inputFlag = false;
+                inputCooldown = InputInterval;
             }
         }
 
@@ -165,12 +183,13 @@ public class DialogueOverlayUI : MonoBehaviour
 
     public void OnChoice(PlayerActionType actionType)
     {
+        Dbg("OnChoice " + actionType);
         Controller.SetBool(OptionsShowing, false);
+        OnHide();
         switch (actionType)
         {
             case PlayerActionType.Leave:
                 affinityBarScript.HideAffinity();
-                Controller.SetBool(OptionsShowing, false);
                 break;
             case PlayerActionType.Awoo:
                 Debug.Log("Awoo " + prevPet);
@@ -181,7 +200,6 @@ public class DialogueOverlayUI : MonoBehaviour
                 ModeManager.Instance.ChangeMode(GameMode.CupDice);
                 break;
         }
-        OnHide();
     }
 
     public void OnAwooPressed()
@@ -201,9 +219,10 @@ public class DialogueOverlayUI : MonoBehaviour
 
     private void OnHide()
     {
+        Dbg("OnHide");
         Controller.SetBool(IsShowing, false);
         
-        if (ModeManager.Instance.Mode == GameMode.Dialogue)
+        if (ModeManager.Instance.Mode != GameMode.Bar)
         {
             ModeManager.Instance.ChangeMode(GameMode.Bar);
         }

@@ -81,7 +81,7 @@ public class TypewriterText : MonoBehaviour
             if (character < fullText.Length && character > prevTextAppearingAnimationCharacter && !char.IsWhiteSpace(fullText[character]))
             {
                 AudioClip[] audioClips = inputData.TypewriterSounds;
-                if (audioClips.Length > 0)
+                if (audioClips.Length > 0 && audioClips[0] != null)
                 {
                     soundSource.PlayOneShot(audioClips[0]);
                 }

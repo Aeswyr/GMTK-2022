@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,12 +6,11 @@ public class AffinityBar : MonoBehaviour
 {
     private GameObject takeOneHomeCanvas;
     private GameObject takeAllHomeCanvas;
-    private static Image heartBar;
-    private float maxAffinity = 50;
-    public static float dog1Affinity;
-    public static float dog2Affinity;
-    public static float dog3Affinity;
-    private float currentDogAffinity = 10;
+    private int maxAffinity = 50;
+    public static int dog1Affinity;
+    public static int dog2Affinity;
+    public static int dog3Affinity;
+    private int currentDogAffinity = 10;
     public static int currentDogTag;
     public static bool rolledDice = false;
 
@@ -25,16 +23,16 @@ public class AffinityBar : MonoBehaviour
     public GameObject diceSideChecker;
     public FlipCupGameHandler flipCupHandler;
     public DialogueOverlayUI dialogueScript;
-
+    public Image heartBar1;
+    public Image heartBar2;
 
     private void Start()
     {
         takeOneHomeCanvas = GameObject.FindWithTag("TakeOneHomeCanvas");
         takeAllHomeCanvas = GameObject.FindWithTag("TakeAllHomeCanvas");
-        heartBar = this.gameObject.GetComponent<Image>();
-        dog1Affinity = 10;
-        dog2Affinity = 20;
-        dog3Affinity = 5;
+        dog1Affinity = 3;
+        dog2Affinity = 3;
+        dog3Affinity = 3;
         drunkScript = FindObjectOfType<Drunkeness>();
 
         if (takeOneHomeCanvas.activeInHierarchy || takeAllHomeCanvas.activeInHierarchy)
@@ -58,28 +56,36 @@ public class AffinityBar : MonoBehaviour
         currentDogTag = dogTag;
 
         this.gameObject.SetActive(true);
+        currentDogTag = dogTag;
+        ref int refAffinity = ref GetAffinity(dogTag);
+        currentDogAffinity = refAffinity;
+
+        UpdateAffinityBars();
+
+        return currentDogAffinity;
+    }
+
+    private ref int GetAffinity(int dogTag)
+    {
         switch (dogTag)
         {
             case 1:
-                currentDogAffinity = dog1Affinity;
-                currentDogTag = 1;
-                break;
+                return ref dog1Affinity;
             case 2:
-                currentDogAffinity = dog2Affinity;
-                currentDogTag = 2;
-                break;
+                return ref dog2Affinity;
             case 3:
-                currentDogAffinity = dog3Affinity;
-                currentDogTag = 3;
-                break;
+                return ref dog3Affinity;
             default:
-                Debug.Log("Not a datable dog");
-                break;
+                Debug.LogError("Not a datable dog");
+                return ref currentDogAffinity;
         }
+    }
 
-        heartBar.fillAmount = currentDogAffinity / maxAffinity;
-
-        return (int)currentDogAffinity;
+    private void UpdateAffinityBars()
+    {
+        // one heart per affinity, split onto two rows
+        heartBar1.fillAmount = currentDogAffinity / (maxAffinity*.5f);
+        heartBar2.fillAmount = (currentDogAffinity-maxAffinity*.5f) / (maxAffinity*.5f);
     }
 
     public void HideAffinity()
@@ -95,56 +101,11 @@ public class AffinityBar : MonoBehaviour
 
 
         // Add roll result to the current dog's affinity meter
-        switch (dogTag)
-        {
-            case 1:
-                dog1Affinity += rollResult;
-               
-                if (dog1Affinity > 50)
-                {
-                    dog1Affinity = 50;
-                }
-                else if (dog1Affinity < 0)
-                {
-                    dog1Affinity = 0;
-                }
-
-                currentDogAffinity = dog1Affinity;
-                break;
-
-            case 2:
-                dog2Affinity += rollResult;
-               
-                if (dog2Affinity > 50)
-                {
-                    dog2Affinity = 50;
-                }
-                else if (dog2Affinity < 0)
-                {
-                    dog2Affinity = 0;
-                }
-
-                currentDogAffinity = dog2Affinity;
-                break;
-
-            case 3:
-                dog3Affinity += rollResult;
-                
-                if (dog3Affinity > 50)
-                {
-                    dog3Affinity = 50;
-                }
-                else if (dog3Affinity < 0)
-                {
-                    dog3Affinity = 0;
-                }
-
-                currentDogAffinity = dog3Affinity;
-                break;
-            default:
-                Debug.Log("No dog affinity assigned");
-                break;
-        }
+        ref int refAffinity = ref GetAffinity(dogTag);
+        refAffinity += rollResult;
+        if (refAffinity > 50) refAffinity = 50;
+        if (refAffinity < 0) refAffinity = 0;
+        currentDogAffinity = refAffinity;
 
         // tell dialogue manager which line to output
         if (rollResult < 1)
@@ -156,17 +117,11 @@ public class AffinityBar : MonoBehaviour
             dialogueScript.OnSuccess((PetId)dogTag, (int)currentDogAffinity);
         }
 
-        heartBar.fillAmount = currentDogAffinity / maxAffinity;
+        UpdateAffinityBars();
         CheckAffinity();
 
-        StartCoroutine(ShowDice());
-    }
-
-    IEnumerator ShowDice()
-    {
-        yield return new WaitForSeconds(2);
-        ModeManager.Instance.ChangeMode(GameMode.Bar);
-        //flipCupHandler.ToggleAwooRoll();
+        // show fx
+        FXOverlayUI.Instance.OnAffinityChanged(rollResult);
     }
 
     // Check if the player can take the dog home
