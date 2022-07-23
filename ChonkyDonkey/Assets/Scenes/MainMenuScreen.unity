@@ -292,7 +292,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0.265, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -524,7 +524,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.0008544922, y: -57.06372}
+  m_AnchoredPosition: {x: 0.0009765625, y: -57.06372}
   m_SizeDelta: {x: -1200.299, y: -489.5053}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &502089336
@@ -1259,7 +1259,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0.265
+  m_Value: 0.5
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -1357,6 +1357,11 @@ MonoBehaviour:
   m_TrackedDeviceOrientationAction: {fileID: 7970375526676320489, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
   m_DeselectOnBackgroundClick: 1
   m_PointerBehavior: 0
+--- !u!82 &1022999135 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 1747299484463643848, guid: e603b68299fac9c419fc9496c731cf11, type: 3}
+  m_PrefabInstance: {fileID: 383347348}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1037707189
 GameObject:
   m_ObjectHideFlags: 0
@@ -1525,8 +1530,8 @@ RectTransform:
   m_Father: {fileID: 2114049413}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.265, y: 0}
-  m_AnchorMax: {x: 0.265, y: 1}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -1948,7 +1953,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.0008544922, y: 101}
+  m_AnchoredPosition: {x: 0.0009765625, y: 101}
   m_SizeDelta: {x: -1650.0825, y: -1017.3127}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1306981736
@@ -3017,3 +3022,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   volumeSlider: {fileID: 835030075}
   soundToggle: {fileID: 306290318}
+  backgroundMusic: {fileID: 1022999135}
