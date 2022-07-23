@@ -96,7 +96,7 @@ public class AffinityBar : MonoBehaviour
     // call this when updating the affinity bar after a dice roll
     public void UpdateAffinityAfterRoll(int dogTag)
     {
-        int rollResult = diceSideChecker.GetComponent<DiceSideCheck>().PlayerRoll() + drunkScript.GetRollModifier();
+        int rollResult = diceSideChecker.GetComponent<DiceSideCheck>().GetPlayerRoll() + drunkScript.GetRollModifier();
         rolledDice = false;
 
 

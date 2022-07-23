@@ -18,7 +18,7 @@ public class DiceSideCheck : MonoBehaviour
         }
     }
 
-    public int PlayerRoll()
+    public int GetPlayerRoll()
     {
         return playerRoll;
     }
@@ -69,6 +69,7 @@ public class DiceSideCheck : MonoBehaviour
                 {
                     FlipCupGameStats.canDrink = true;
                     enableCollider(false);
+                    DrinkChoiceOverlay.Instance.Show(FindObjectOfType<CupStorage>());
                 }
             }
             else

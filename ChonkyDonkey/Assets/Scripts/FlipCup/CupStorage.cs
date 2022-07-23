@@ -42,6 +42,39 @@ public class CupStorage : MonoBehaviour
         return (gameObject.transform.childCount == 0 || FlipCupGameStats.diceCount < 0);
     }
 
+    public int[] GetCupList()
+    {
+        List<int> cupData = new List<int>();
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            var cup = transform.GetChild(i).GetComponent<CupHandler>();
+            if (cup != null)
+            {
+                cupData.Add(cup.thirst);
+            }
+        }
+        return cupData.ToArray();
+    }
+
+    public void RemoveCup(int thirstValue)
+    {
+        // only remove first
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            var cup = transform.GetChild(i).GetComponent<CupHandler>();
+            if (cup != null)
+            {
+                if (cup.thirst == thirstValue)
+                {
+                    cup.OnDrink();
+                    return;
+                }
+            }
+        }
+        // if we got here, we failed, warn
+        Debug.LogError("Drank a cup, but the cup was not found!");
+    }
+
     private void restoreCups()
     {
         float topSlot = -5;

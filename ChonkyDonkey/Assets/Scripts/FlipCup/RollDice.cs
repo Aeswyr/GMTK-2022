@@ -10,6 +10,9 @@ public class RollDice : MonoBehaviour
     private static MeshRenderer diceRenderer;
     private static Vector3 initialPosition;
 
+    private float prevRollTime;
+    private const float minimumRollCooldown = 0.5f;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -21,7 +24,8 @@ public class RollDice : MonoBehaviour
     {
         velocity = rb.velocity;
         bool notMoving = (rb.velocity.x == 0f && rb.velocity.y == 0f && rb.velocity.z == 0f);
-        if (InputHandler.Instance.interact.pressed && !FlipCupGameStats.canDrink && notMoving)
+        bool rerollCondition = Time.time - prevRollTime > minimumRollCooldown || notMoving;
+        if (InputHandler.Instance.interact.pressed && !FlipCupGameStats.canDrink && rerollCondition)
         {
             FlipCupGameStats.rolledPlayerDice = true;
             rollDice();

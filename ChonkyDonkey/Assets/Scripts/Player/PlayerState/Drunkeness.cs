@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Drunkeness : MonoBehaviour
+public class Drunkeness : Singleton<Drunkeness>
 {
 
     public int currentIndex = 0;
@@ -20,6 +20,7 @@ public class Drunkeness : MonoBehaviour
 
     void Awake()
     {
+        var self = Instance; // initialize singleton on awake
         rollModifiers = CreateDrunkenessArray();
     }
 

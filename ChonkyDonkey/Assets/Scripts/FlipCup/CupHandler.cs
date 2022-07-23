@@ -9,18 +9,21 @@ public class CupHandler : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (FlipCupGameStats.canDrink && FlipCupGameStats.rolledPlayerDice)
-        {
-            Debug.Log(thirst + " Cup drank!");
+        // Replaced with UI, see DrinkChoiceButton
+    }
 
-            TMPro.TextMeshProUGUI tmText = GameObject.FindWithTag("FlipCupHUD").GetComponent<TMPro.TextMeshProUGUI>();
-            tmText.text = "Cup drank with alcohol content of: " + thirst;
-
-            FlipCupGameStats.thirst += thirst;
-            FlipCupGameStats.playerSixCount += 1;
-            FlipCupGameStats.canDrink = false;
-            FlipCupGameStats.rolledPlayerDice = false;
-            Destroy(gameObject);
-        }
+    public void OnDrink()
+    {
+        Debug.Log(thirst + " Cup drank!");
+    
+        TMPro.TextMeshProUGUI tmText = GameObject.FindWithTag("FlipCupHUD").GetComponent<TMPro.TextMeshProUGUI>();
+        tmText.text = "Cup drank with alcohol content of: " + thirst;
+    
+        Drunkeness.Instance.ConsumeDrink(thirst);
+        FlipCupGameStats.thirst += thirst;
+        FlipCupGameStats.playerSixCount += 1;
+        FlipCupGameStats.canDrink = false;
+        FlipCupGameStats.rolledPlayerDice = false;
+        Destroy(gameObject);
     }
 }
