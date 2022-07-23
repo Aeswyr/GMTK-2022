@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class FlipCupGameStats : MonoBehaviour
 {
-    public static int diceCount = 20;
+    public static PetId playerId = PetId.Haku;
+    public static PetId opponentId = PetId.Default; // do not reset
+    
+    public static int diceCount = 20; // do not reset, this is tracked across the whole game
     public static int thirst = 0;
     public static int spentDice = 0;
 
@@ -21,6 +24,10 @@ public class FlipCupGameStats : MonoBehaviour
     {
         FlipCupGameStats.diceCount -= 1;
         FlipCupGameStats.spentDice += 1;
+        
+        // update ui
+        FlipCupHUD.Instance.OnPlayerDiceChange(diceCount);
+        FlipCupHUD.Instance.OnRewardChange(GetWinAmount());
     }
 
     public static bool checkWinCondition()
@@ -30,7 +37,13 @@ public class FlipCupGameStats : MonoBehaviour
 
     public static void rewardDice()
     {
-        diceCount += (spentDice + (spentDice / 2));
+        diceCount += GetWinAmount();
+        FlipCupHUD.Instance.OnPlayerDiceChange(diceCount);
+    }
+
+    public static int GetWinAmount()
+    {
+        return (spentDice + (spentDice / 2));
     }
 
     public static void resetOnNewPlay()

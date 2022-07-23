@@ -4,8 +4,6 @@ using UnityEngine.UI;
 
 public class AffinityBar : MonoBehaviour
 {
-    private GameObject takeOneHomeCanvas;
-    private GameObject takeAllHomeCanvas;
     private int maxAffinity = 50;
     public static int dog1Affinity;
     public static int dog2Affinity;
@@ -25,11 +23,11 @@ public class AffinityBar : MonoBehaviour
     public DialogueOverlayUI dialogueScript;
     public Image heartBar1;
     public Image heartBar2;
+    public GameObject takeOneHomeCanvas;
+    public GameObject takeAllHomeCanvas;
 
     private void Start()
     {
-        takeOneHomeCanvas = GameObject.FindWithTag("TakeOneHomeCanvas");
-        takeAllHomeCanvas = GameObject.FindWithTag("TakeAllHomeCanvas");
         dog1Affinity = 3;
         dog2Affinity = 3;
         dog3Affinity = 3;
@@ -40,10 +38,7 @@ public class AffinityBar : MonoBehaviour
             takeOneHomeCanvas.SetActive(false);
             takeAllHomeCanvas.SetActive(false);
         }
-        if (this.gameObject.activeInHierarchy)
-        {
-            this.gameObject.SetActive(false);
-        }
+        this.gameObject.SetActive(false);
     }
     public int GetDogTag()
     {

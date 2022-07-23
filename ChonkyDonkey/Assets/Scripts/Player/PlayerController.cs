@@ -31,6 +31,14 @@ public class PlayerController : MonoBehaviour
         // Interaction
 
         if (InputHandler.Instance.interact.pressed) {
+            
+            // hack
+            if (FlipCupResultOverlay.Instance.IsShowing)
+            {
+                FlipCupResultOverlay.Instance.OnClosePressed();
+                return;
+            }
+            
             var interactions = interaction.FindValidInteractables();
             if (interactions.Count > 0)
                 interactions[0].Run();

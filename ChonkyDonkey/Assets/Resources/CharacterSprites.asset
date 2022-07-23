@@ -1,0 +1,65 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41de74822a734db6a01551b226b9846f, type: 3}
+  m_Name: CharacterSprites
+  m_EditorClassIdentifier: 
+  Data:
+  - Character: 0
+    Default: {fileID: 21300000, guid: 0d07bf73ce1d34cc2b44d3d6ab0fd939, type: 3}
+    Happy: {fileID: 21300000, guid: c3fb3fe0a36aa4e0c96952bb9999370e, type: 3}
+    Angry: {fileID: 21300000, guid: b58905efa182c478598505aed339c6cc, type: 3}
+    Bark: {fileID: 8300000, guid: 1fa6c5c672a6f4e3c8a5e34d70dd3ca5, type: 3}
+  - Character: 1
+    Default: {fileID: 21300000, guid: fbd5258d9b3e64e57bef68834f000b45, type: 3}
+    Happy: {fileID: 21300000, guid: fbd5258d9b3e64e57bef68834f000b45, type: 3}
+    Angry: {fileID: 21300000, guid: fbd5258d9b3e64e57bef68834f000b45, type: 3}
+    Bark: {fileID: 8300000, guid: d2a473d1abe6042908a42ff32815a812, type: 3}
+  - Character: 2
+    Default: {fileID: 21300000, guid: b169af7c1367b440d9f9a6c379375d46, type: 3}
+    Happy: {fileID: 21300000, guid: 225de1e744edb4441953c1d6b85534cb, type: 3}
+    Angry: {fileID: 21300000, guid: 81e6b6204ae8043df95f38dc1c174ac5, type: 3}
+    Bark: {fileID: 8300000, guid: fcd8709c5ab674c218e74a846f548f59, type: 3}
+  - Character: 3
+    Default: {fileID: 21300000, guid: bac7885e7989b405b97e89d6e2ae5b5e, type: 3}
+    Happy: {fileID: 21300000, guid: f3511d64a9ea54e3c83ea38613c1338f, type: 3}
+    Angry: {fileID: 21300000, guid: c5b155bf3c9e9442b94340d731cfc234, type: 3}
+    Bark: {fileID: 8300000, guid: 9845d9f812aa144b2856d0e87d667f15, type: 3}
+  - Character: 4
+    Default: {fileID: 21300000, guid: 13400e9e3872342588b3a8797f6dcc3e, type: 3}
+    Happy: {fileID: 21300000, guid: efb4f49e12bb14866b4d9f6c876c9b90, type: 3}
+    Angry: {fileID: 21300000, guid: 56a5cfe85523e4bc68b9b55e441b6bd8, type: 3}
+    Bark: {fileID: 8300000, guid: 4b1c00536599f47b8b9fbf52cd483eca, type: 3}
+  - Character: 5
+    Default: {fileID: 21300000, guid: 9caef1a41ac4c4ae096b50a9116d6bea, type: 3}
+    Happy: {fileID: 21300000, guid: 9caef1a41ac4c4ae096b50a9116d6bea, type: 3}
+    Angry: {fileID: 21300000, guid: 9caef1a41ac4c4ae096b50a9116d6bea, type: 3}
+    Bark: {fileID: 8300000, guid: 1fa6c5c672a6f4e3c8a5e34d70dd3ca5, type: 3}
+  - Character: 6
+    Default: {fileID: 21300000, guid: 7163478f9e5694ca1aa10126c297f1f4, type: 3}
+    Happy: {fileID: 21300000, guid: 7163478f9e5694ca1aa10126c297f1f4, type: 3}
+    Angry: {fileID: 21300000, guid: 7163478f9e5694ca1aa10126c297f1f4, type: 3}
+    Bark: {fileID: 8300000, guid: 2471f79a2d6b244bb80564fac756487e, type: 3}
+  - Character: 7
+    Default: {fileID: 21300000, guid: 0703869d683514d0483b447e809fab30, type: 3}
+    Happy: {fileID: 21300000, guid: 0703869d683514d0483b447e809fab30, type: 3}
+    Angry: {fileID: 21300000, guid: 0703869d683514d0483b447e809fab30, type: 3}
+    Bark: {fileID: 8300000, guid: e46493ca0887d45148aba81d474ef738, type: 3}
+  - Character: 8
+    Default: {fileID: 21300000, guid: 871e274960f2f4ec7a58cf10a787f737, type: 3}
+    Happy: {fileID: 21300000, guid: 871e274960f2f4ec7a58cf10a787f737, type: 3}
+    Angry: {fileID: 21300000, guid: 871e274960f2f4ec7a58cf10a787f737, type: 3}
+    Bark: {fileID: 8300000, guid: 1bc6b487a151247e9af1895273adbdec, type: 3}
+  - Character: 9
+    Default: {fileID: 21300000, guid: 0dabcd123a29f4e8b898022345fb6a9d, type: 3}
+    Happy: {fileID: 21300000, guid: 0dabcd123a29f4e8b898022345fb6a9d, type: 3}
+    Angry: {fileID: 21300000, guid: 0dabcd123a29f4e8b898022345fb6a9d, type: 3}
+    Bark: {fileID: 8300000, guid: 2ea7e07881cf3421c813395e3e184562, type: 3}

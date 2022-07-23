@@ -75,14 +75,23 @@ public class CupStorage : MonoBehaviour
         Debug.LogError("Drank a cup, but the cup was not found!");
     }
 
-    private void restoreCups()
+    public void restoreCups()
     {
+        for (int i = transform.childCount-1; i >= 0; i--)
+        {
+            Destroy(transform.GetChild(i).gameObject);
+        }
+        
         float topSlot = -5;
         for (int i = 1; i <= 5; i++)
         {
+            int thirstVal = i;
             string name = "Cup" + i.ToString();
-            GameObject cup = Instantiate(cupPrefab, gameObject.transform.position, Quaternion.identity);
-            cup.gameObject.GetComponent<CupHandler>().thirst = i;
+            GameObject cup = Instantiate(cupPrefab, gameObject.transform.position + Vector3.forward * .1f * (i-1), Quaternion.Euler(-11.96f,0,0));
+            Debug.Log("cup created " + cup + " thirst:" + cup.GetComponent<CupHandler>().thirst);
+            cup.GetComponent<CupHandler>().thirst = thirstVal;
+            Debug.Log("thirst val " + thirstVal);
+            Debug.Log("cup " + cup + " thirst:" + cup.GetComponent<CupHandler>().thirst);
             cup.transform.parent = gameObject.transform;
             cup.transform.position = new Vector3(cup.transform.position.x + 10f, cup.transform.position.y + 2.5f, cup.transform.position.z + topSlot);
             cup.gameObject.name = name;

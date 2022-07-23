@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class FlipCupGameHandler : MonoBehaviour
@@ -14,32 +12,38 @@ public class FlipCupGameHandler : MonoBehaviour
     public GameObject AwooRollCamera;
     public GameObject AwooRoll;
 
-    public GameObject FlipCupHUD;
-
     private void Start()
     {
         HUD.SetActive(true);
-        //Overlay.SetActive(true);
         FlipCupCamera.SetActive(false);
         FlipCup.SetActive(false);
-        FlipCupHUD.SetActiveFast(false);
+        FlipCupHUD.Instance.gameObject.SetActiveFast(false);
     }
 
-    public void ToggleFlipCup()
+    public void ActivateFlipCup()
     {
-        HUD.SetActive(!HUD.activeInHierarchy);
-        //Overlay.SetActive(!Overlay.activeInHierarchy);
-        FlipCupCamera.SetActive(!FlipCupCamera.activeInHierarchy);
-        FlipCup.SetActive(!FlipCup.activeInHierarchy);
-        FlipCupHUD.SetActiveFast(!FlipCupHUD.activeInHierarchy);
+        ToggleFlipCup(true);
+    }
 
-        if (FlipCupHUD.activeInHierarchy)
+    public void DeactivateFlipCup()
+    {
+        ToggleFlipCup(false);
+    }
+
+    private void ToggleFlipCup(bool active)
+    {
+        Cups.SetActive(active);
+        HUD.SetActive(!active);
+        FlipCupCamera.SetActive(active);
+        FlipCup.SetActive(active);
+        FlipCupHUD.Instance.gameObject.SetActiveFast(active);
+
+        if (active)
         {
-            TMPro.TextMeshProUGUI tmText = GameObject.FindWithTag("FlipCupHUD").GetComponent<TMPro.TextMeshProUGUI>();
-            tmText.text = "Click the white dice to begin.\n\nWhen you roll a six, click on a cup to drink! Try and roll the most sixes before your two opponents! The player who drinks the most cups will win more dice!";
+            FlipCupGameStats.resetOnNewPlay();
+            Cups.GetComponent<CupStorage>().restoreCups();
+            FlipCupHUD.Instance.OnGameStart();
         }
-
-        FlipCupGameStats.resetOnNewPlay();
     }
 
     public void ToggleAwooRoll()

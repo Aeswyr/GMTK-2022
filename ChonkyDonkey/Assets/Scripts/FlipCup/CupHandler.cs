@@ -15,9 +15,9 @@ public class CupHandler : MonoBehaviour, IPointerClickHandler
     public void OnDrink()
     {
         Debug.Log(thirst + " Cup drank!");
-    
-        TMPro.TextMeshProUGUI tmText = GameObject.FindWithTag("FlipCupHUD").GetComponent<TMPro.TextMeshProUGUI>();
-        tmText.text = "Cup drank with alcohol content of: " + thirst;
+        
+        FlipCupHUD.Instance.SetInstructions("Cup drank with alcohol content of: " + thirst);
+        FlipCupHUD.Instance.OnDrinksChange(FlipCupGameStats.playerSixCount+1, FlipCupGameStats.NPC1SixCount + FlipCupGameStats.NPC2SixCount);
     
         Drunkeness.Instance.ConsumeDrink(thirst);
         FlipCupGameStats.thirst += thirst;

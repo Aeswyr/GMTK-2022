@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 
 public class RollDiceNPC : MonoBehaviour
@@ -22,6 +23,7 @@ public class RollDiceNPC : MonoBehaviour
         GameObject allCups = GameObject.Find("Cups");
         int random = Random.Range(0, allCups.transform.childCount);
         FlipCupGameStats.NPC1SixCount += 1;
+        FlipCupHUD.Instance.OnDrinksChange(FlipCupGameStats.playerSixCount, FlipCupGameStats.NPC1SixCount + FlipCupGameStats.NPC2SixCount);
 
         Destroy(allCups.transform.GetChild(random).gameObject);
     }

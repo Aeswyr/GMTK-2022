@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class DialogueOverlayUI : MonoBehaviour
@@ -15,8 +16,8 @@ public class DialogueOverlayUI : MonoBehaviour
     public AudioSource BarkSource;
     public bool PrintDebug;
     
-    [Header("Assets")]
-    public CharacterDialogueSpriteCollection[] CharacterSprites;
+    [FormerlySerializedAs("CharacterSprites")] [Header("Assets")]
+    public CharacterDialogueSpriteCollection[] CharacterSpritesOld;
 
     [Header("Config")] 
     public float TypewriterSpeed;
@@ -120,18 +121,7 @@ public class DialogueOverlayUI : MonoBehaviour
 
     private CharacterDialogueSpriteCollection GetSprites(PetId id)
     {
-        if (CharacterSprites.TryGet((int)id, out var collection))
-        {
-            if (collection.Character != id)
-            {
-                Debug.LogWarning("Character does not match id");
-            }
-            return collection;
-        }
-        else
-        {
-            return CharacterSprites.Length > 0 ? CharacterSprites[0] : default;
-        }
+        return CharacterSprites.Load(id);
     }
 
     private void Update()
@@ -197,6 +187,7 @@ public class DialogueOverlayUI : MonoBehaviour
                 break;
             case PlayerActionType.Invite:
                 Debug.Log("Invited " + prevPet);
+                FlipCupGameStats.opponentId = prevPet;
                 ModeManager.Instance.ChangeMode(GameMode.CupDice);
                 break;
         }

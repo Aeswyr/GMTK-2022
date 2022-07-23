@@ -51,6 +51,5 @@ public class DrinkChoiceOverlay : Singleton<DrinkChoiceOverlay>
         GetComponent<CanvasGroup>().interactable = false;
         GetComponent<CanvasGroup>().blocksRaycasts = false;
         cupStorage.RemoveCup(button.DrinkSize);
-        gameObject.SetActive(false);
     }
 }

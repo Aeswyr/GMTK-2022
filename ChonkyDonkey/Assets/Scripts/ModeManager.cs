@@ -12,15 +12,31 @@ public class ModeManager : Singleton<ModeManager>
 
     public void ChangeMode(GameMode newMode)
     {
-        if (Mode != newMode && (Mode == GameMode.CupDice || newMode == GameMode.CupDice)) 
-            FlipCup.ToggleFlipCup();
-        if (Mode != newMode && (Mode == GameMode.AwooDice || newMode == GameMode.AwooDice))
+        // Cup Dice
+        if (newMode == GameMode.CupDice)
+        {
+            FlipCup.ActivateFlipCup();
+        }
+        else if (Mode == GameMode.CupDice)
+        {
+            FlipCupResultOverlay.Instance.Show();
+            FlipCup.DeactivateFlipCup();
+        }
+        
+        // Awoo Dice
+        if (newMode == GameMode.AwooDice)
+        {
             Awoo.ToggleAwooRoll();
+        }
+        else if (Mode == GameMode.AwooDice)
+        {
+            Awoo.ToggleAwooRoll();
+        }
+        
+        // Bar + Dialogue
         BarCam.gameObject.SetActive(newMode == GameMode.Bar || newMode == GameMode.Dialogue);
-        //FlipCup.gameObject.SetActive(newMode == GameMode.CupDice);
 
-
-
+        // change mode
         Mode = newMode;
     }
 }
