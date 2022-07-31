@@ -11,6 +11,7 @@ public class MainMenuScreen : MonoBehaviour
 
     public void OnPlayClicked()
     {
+        FlipCupGameStats.ResetGameStats();
         StartCoroutine(PlayCoroutine());
     }
 

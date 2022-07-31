@@ -5,9 +5,9 @@ using UnityEngine.UI;
 public class AffinityBar : MonoBehaviour
 {
     private int maxAffinity = 50;
-    public static int dog1Affinity;
-    public static int dog2Affinity;
-    public static int dog3Affinity;
+    public int kiefyAffinity;
+    public int umbreonAffinity;
+    public int leafeonAffinity;
     private int currentDogAffinity = 10;
     public static int currentDogTag;
     public static bool rolledDice = false;
@@ -28,9 +28,9 @@ public class AffinityBar : MonoBehaviour
 
     private void Start()
     {
-        dog1Affinity = 3;
-        dog2Affinity = 3;
-        dog3Affinity = 3;
+        umbreonAffinity = 3;
+        leafeonAffinity = 3;
+        kiefyAffinity = 3;
         drunkScript = FindObjectOfType<Drunkeness>();
 
         if (takeOneHomeCanvas.activeInHierarchy || takeAllHomeCanvas.activeInHierarchy)
@@ -64,12 +64,12 @@ public class AffinityBar : MonoBehaviour
     {
         switch (dogTag)
         {
-            case 1:
-                return ref dog1Affinity;
-            case 2:
-                return ref dog2Affinity;
-            case 3:
-                return ref dog3Affinity;
+            case (int)PetId.Kiefy:
+                return ref kiefyAffinity;
+            case (int)PetId.Umbreon:
+                return ref umbreonAffinity;
+            case (int)PetId.Leafeon: 
+                return ref leafeonAffinity;
             default:
                 Debug.LogError("Not a datable dog");
                 return ref currentDogAffinity;
@@ -122,11 +122,11 @@ public class AffinityBar : MonoBehaviour
     // Check if the player can take the dog home
     private void CheckAffinity()
     {
-        if (dog1Affinity >= 50 && dog2Affinity >= 50 && dog3Affinity >= 50)
+        if (umbreonAffinity >= 50 && leafeonAffinity >= 50 && kiefyAffinity >= 50)
         {
             takeAllHomeCanvas.SetActive(true);
         }
-        else if (dog1Affinity >=50 || dog2Affinity >=50 || dog3Affinity >= 50)
+        else if (currentDogAffinity >= 50)
         {
             takeOneHomeCanvas.SetActive(true);
         }
@@ -135,6 +135,13 @@ public class AffinityBar : MonoBehaviour
     public void TakeHome()
     {
         Debug.Log("Took dog home. Game over");
+        EndingScreenUI.Instance.Show(EndingScreenUI.EndingResult.AwooOne, (PetId)currentDogTag); 
+    }
+
+    public void TakeAllHome()
+    {
+        Debug.Log("Took all dogs home. Game over");
+        EndingScreenUI.Instance.Show(EndingScreenUI.EndingResult.AwooAll, (PetId)currentDogTag);
     }
 
     public void KeepSocializing()

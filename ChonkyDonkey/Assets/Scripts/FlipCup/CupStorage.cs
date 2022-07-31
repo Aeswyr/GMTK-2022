@@ -28,13 +28,13 @@ public class CupStorage : MonoBehaviour
         restoreCups();
         FlipCupGameHandler handler = flipCupGameHandler.GetComponent<FlipCupGameHandler>();
         
-        ModeManager.Instance.ChangeMode(GameMode.Bar);
-        
-        if (FlipCupGameStats.diceCount < 0)
+        if (FlipCupGameStats.diceCount < 0 && ModeManager.Instance.Mode == GameMode.AwooDice)
         {
             // END THE GAME LOSE CONDITION
-            //Time.timeScale = 0f;
+            EndingScreenUI.Instance.Show(EndingScreenUI.EndingResult.KickedOut, PetId.Default);
         }
+        
+        ModeManager.Instance.ChangeMode(GameMode.Bar);
     }
 
     public bool endGameState()

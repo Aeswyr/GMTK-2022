@@ -10,6 +10,7 @@ public class DrinkChoiceButton : MonoBehaviour, IPointerClickHandler
     public int DrinkSize => drinkSize;
     
     private static readonly int Drink = Animator.StringToHash("Drink");
+    private static readonly int Reset = Animator.StringToHash("Reset");
     private bool isAnimating;
     private Action<DrinkChoiceButton> beginDrinkCallback;
     private Action<DrinkChoiceButton> didDrinkCallback;
@@ -22,6 +23,7 @@ public class DrinkChoiceButton : MonoBehaviour, IPointerClickHandler
         this.drinkSize = drinkSize;
         beginDrinkCallback = chosenCallback;
         didDrinkCallback = doneCallback;
+        Controller.SetTrigger(Reset);
         
         // update ui
         CountLabel.text = $"{drinkSize}/5";

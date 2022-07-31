@@ -6,9 +6,11 @@ public class FlipCupGameStats : MonoBehaviour
 {
     public static PetId playerId = PetId.Haku;
     public static PetId opponentId = PetId.Default; // do not reset
-    
-    public static int diceCount = 20; // do not reset, this is tracked across the whole game
-    public static int thirst = 0;
+
+    public const int StartingDice = 20;
+    public static int diceCount = StartingDice; // do not reset, this is tracked across the whole game
+    public const int StartingThirst = 0;
+    public static int thirst = StartingThirst;
     public static int spentDice = 0;
 
     public static bool canDrink = false;
@@ -19,6 +21,12 @@ public class FlipCupGameStats : MonoBehaviour
     public static int playerSixCount = 0;
     public static int NPC1SixCount = 0;
     public static int NPC2SixCount = 0;
+
+    public static void ResetGameStats()
+    {
+        diceCount = StartingDice;
+        thirst = StartingThirst;
+    }
 
     public static void spendDice()
     {

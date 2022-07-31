@@ -40,8 +40,8 @@ MonoBehaviour:
     Bark: {fileID: 8300000, guid: 4b1c00536599f47b8b9fbf52cd483eca, type: 3}
   - Character: 5
     Default: {fileID: 21300000, guid: 9caef1a41ac4c4ae096b50a9116d6bea, type: 3}
-    Happy: {fileID: 21300000, guid: 9caef1a41ac4c4ae096b50a9116d6bea, type: 3}
-    Angry: {fileID: 21300000, guid: 9caef1a41ac4c4ae096b50a9116d6bea, type: 3}
+    Happy: {fileID: 21300000, guid: 16e9226b98b9942c192551285beca16e, type: 3}
+    Angry: {fileID: 21300000, guid: a6a03ed180026437e9a6450c65883854, type: 3}
     Bark: {fileID: 8300000, guid: 1fa6c5c672a6f4e3c8a5e34d70dd3ca5, type: 3}
   - Character: 6
     Default: {fileID: 21300000, guid: 7163478f9e5694ca1aa10126c297f1f4, type: 3}

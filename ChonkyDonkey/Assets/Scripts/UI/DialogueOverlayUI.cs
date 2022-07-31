@@ -15,9 +15,6 @@ public class DialogueOverlayUI : MonoBehaviour
     public GameObject InviteButton;
     public AudioSource BarkSource;
     public bool PrintDebug;
-    
-    [FormerlySerializedAs("CharacterSprites")] [Header("Assets")]
-    public CharacterDialogueSpriteCollection[] CharacterSpritesOld;
 
     [Header("Config")] 
     public float TypewriterSpeed;
@@ -39,6 +36,7 @@ public class DialogueOverlayUI : MonoBehaviour
 
     private PetId prevPet;
     private DogReactionType prevReaction;
+    private int prevAffinity;
 
     private void Awake()
     {
@@ -54,6 +52,7 @@ public class DialogueOverlayUI : MonoBehaviour
     {
         Dbg("OnGreetDog " + dogId);
         int affinity = affinityBarScript.ShowThisDogsAffinity((int)dogId);
+        if (!StatsLoader.Get(dogId).CanAwoo) affinityBarScript.HideAffinity();
         AudioClip bark = GetSprites(dogId).Bark;
         if (bark != null)
         {
@@ -66,14 +65,14 @@ public class DialogueOverlayUI : MonoBehaviour
     {
         Dbg("OnSuccess " + dogId);
         affinityBarScript.ShowThisDogsAffinity((int)dogId);
-        OnTalk(dogId, affinity, DogReactionType.Happy);
+        OnTalk(dogId, prevAffinity, DogReactionType.Happy);
     }
     
     public void OnFail(PetId dogId, int affinity)
     {
         Dbg("OnFail " + dogId);
         affinityBarScript.ShowThisDogsAffinity((int)dogId);
-        OnTalk(dogId, affinity, DogReactionType.Angry);
+        OnTalk(dogId, prevAffinity, DogReactionType.Angry);
     }
 
     private void OnTalk(PetId pet, int affinity, DogReactionType reactionType)
@@ -180,9 +179,15 @@ public class DialogueOverlayUI : MonoBehaviour
         {
             case PlayerActionType.Leave:
                 affinityBarScript.HideAffinity();
+                if (FlipCupGameStats.diceCount < 1)
+                {
+                    // game over
+                    EndingScreenUI.Instance.Show(EndingScreenUI.EndingResult.KickedOut,default);
+                }
                 break;
             case PlayerActionType.Awoo:
                 Debug.Log("Awoo " + prevPet);
+                prevAffinity = affinityBarScript.ShowThisDogsAffinity((int)prevPet);
                 ModeManager.Instance.ChangeMode(GameMode.AwooDice);
                 break;
             case PlayerActionType.Invite:

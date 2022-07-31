@@ -71,6 +71,12 @@ public class FlipCupResultOverlay : Singleton<FlipCupResultOverlay>
         SetInteractable(false);
         Controller.SetTrigger(Reset);
         IsShowing = false;
+        
+        if (FlipCupGameStats.diceCount < 0)
+        {
+            // END THE GAME LOSE CONDITION
+            EndingScreenUI.Instance.Show(EndingScreenUI.EndingResult.KickedOut, PetId.Default);
+        }
     }
 
     private void SetInteractable(bool interactable)

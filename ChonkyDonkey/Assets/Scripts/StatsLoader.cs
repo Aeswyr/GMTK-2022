@@ -28,6 +28,11 @@ public static class StatsLoader
     
     public static DogStatsBlock[] Stats { get; private set; }
 
+    public static DogStatsBlock Get(PetId dogId)
+    {
+        return Get((int)dogId);
+    }
+    
     public static DogStatsBlock Get(int dogId)
     {
         // no stats
